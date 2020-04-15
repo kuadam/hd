@@ -1,0 +1,148 @@
+5001;LC K10-01 CO;Licznik CO Vito Bialogard;17;Licznik CO(O);R;40;783;MAN,0,0,0,0,CO;Slowinska 1;Miasto;A;Praca;Bialogard;54,0156098 15,9612949;18.11.2017 19:07;2;1
+5002;LC K10-02 CO;Licznik CO ABPHARMA;17;Licznik CO(O);R;40;783;MAN,0,0,0,0,CO;OLimpijska 1a;Miasto;A;Praca;Bialogard;54,0139409 15,9550516;07.06.2017 15:29;2;1
+5003;LC K10-03 CO;Licznik CO Biblioteka Publiczna;17;Licznik CO(O);R;40;783;MAN,0,0,0,0,CO;Grunwaldzka 46;Miasto;A;Praca;Bialogard;54,0071357 15,9927613;07.06.2017 15:29;2;1
+5004;LC K10-04 CO;Licznik CO Ciszewskiego 3;17;Licznik CO(O);R;40;783;BSM,2,16,2,16,CO;Ciszewskiego 3;Miasto;A;Praca;Bialogard;54,0142095 15,9525815;07.06.2017 15:29;2;1
+5005;LC K10-05 CW;Licznik CW Ciszewskiego 3;18;Licznik CW(O);R;40;783;BSM,2,16,2,16,CW;Ciszewskiego 3;Miasto;A;Praca;Bialogard;54,0139472 15,9526587;07.06.2017 15:29;2;1
+5006;LC K10-06 CO;Licznik CO Ciszewskiego 6;17;Licznik CO(O);R;40;783;BSM,2,17,2,17,CO;Ciszewskiego 6;Miasto;A;Praca;Bialogard;54,0142835 15,9519221;07.06.2017 15:29;2;1
+5007;LC K10-07 CW;Licznik CW Ciszewskiego 6;18;Licznik CW(O);R;40;783;BSM,2,17,2,17,CW;Ciszewskiego 6;Miasto;A;Praca;Bialogard;54,0142835 15,9519221;07.06.2017 15:29;2;1
+5008;LC K10-08 CO;Licznik CO Klub BSM;17;Licznik CO(O);R;40;783;MAN,0,0,0,0,CO;Komara 19;Miasto;A;Praca;Bialogard;54,0121063 15,9556846;07.06.2017 15:29;2;1
+5009;LC K10-09 CO;Licznik CO WMN Kolobrzeska;17;Licznik CO(O);R;40;783;BSM,1,131,1,39,CO;Kolobrzeska 19;Miasto;A;Praca;Bialogard;54,0085202 15,9716452;07.06.2017 15:29;2;1
+5010;LC K10-10 CO;Licznik CO Energa Operator;17;Licznik CO(O);R;40;783;MAN,0,0,0,0,CO;Kolobrzeska 32;Miasto;A;Praca;Bialogard;54,0116600 15,9654011;07.06.2017 15:29;2;1
+5011;LC K10-11 CO;Licznik CO WSP;17;Licznik CO(O);R;40;783;MAN,1,133,1,55,CO;Kolobrzeska 33;Miasto;A;Praca;Bialogard;54,0116600 15,9664011;07.06.2017 15:29;2;1
+5012;LC K10-12 CO;Licznik CO Baza ZRB;17;Licznik CO(O);R;40;783;MAN,0,0,0,0,CO;Kolobrzeska ;Miasto;A;Praca;Bialogard;54,0118100 15,9566073;07.06.2017 15:29;2;1
+5013;LC K10-13 CO;Licznik CO BSM/KO/W-1;17;Licznik CO(O);R;40;783;BSM,2,19,2,19,CO;Kolobrzeska 49;Miasto;A;Praca;Bialogard;54,0145524 15,9556846;07.06.2017 15:29;2;1
+5014;LC K10-14 CW;Licznik CW BSM/KO/W-1;18;Licznik CW(O);R;40;783;BSM,2,19,2,19,CW;Kolobrzeska 49;Miasto;A;Praca;Bialogard;54,0145524 15,9556846;07.06.2017 15:29;2;1
+5015;LC K10-15 CO;Licznik CO BSM/G/W-1;17;Licznik CO(O);R;40;783;BSM,2,20,2,20,CO;Kolobrzeska 51;Miasto;A;Praca;Bialogard;54,0137202 15,9576480;07.06.2017 15:29;2;1
+5016;LC K10-16 CW;Licznik CW BSM/G/W-1;18;Licznik CW(O);R;40;783;BSM,2,20,2,20,CW;Kolobrzeska 51;Miasto;A;Praca;Bialogard;54,0137202 15,9576480;07.06.2017 15:29;2;1
+5017;LC K10-17 CO;Licznik CO BSM/K;17;Licznik CO(O);R;40;783;BSM,2,5,2,5,CO;Kusociñskiego 1;Miasto;A;Praca;Bialogard;54,0111087 15,9541794;07.06.2017 15:29;2;1
+5018;LC K10-18 CW;Licznik CW BSM/K;18;Licznik CW(O);R;40;783;BSM,2,5,2,5,CW;Kusociñskiego 1;Miasto;A;Praca;Bialogard;54,0111087 15,9541794;07.06.2017 15:29;2;1
+5019;LC K10-19 CO;Licznik CO BSM/K;17;Licznik CO(O);R;40;783;BSM,2,6,2,6,CO;Kusociñskiego 2;Miasto;A;Praca;Bialogard;54,0113136 15,9535464;07.06.2017 15:29;2;1
+5020;LC K10-20 CW;Licznik CW BSM/K;18;Licznik CW(O);R;40;783;BSM,2,6,2,6,CW;Kusociñskiego 2;Miasto;A;Praca;Bialogard;54,0113136 15,9535464;07.06.2017 15:29;2;1
+5021;LC K10-21 CO;Licznik CO BSM/K;17;Licznik CO(O);R;40;783;BSM,2,7,2,7,CO;Kusociñskiego 3;Miasto;A;Praca;Bialogard;54,0116666 15,9528329;07.06.2017 15:29;2;1
+5022;LC K10-22 CW;Licznik CW BSM/K;18;Licznik CW(O);R;40;783;BSM,2,7,2,7,CW;Kusociñskiego 3;Miasto;A;Praca;Bialogard;54,0116666 15,9528329;07.06.2017 15:29;2;1
+5023;LC K10-23 CO;Licznik CO PKP;17;Licznik CO(O);R;40;783;BSM,2,2,2,2,CO;Malinowskiego 1;Miasto;A;Praca;Bialogard;54,0117104 15,9554018;07.06.2017 15:29;2;1
+5024;LC K10-24 CW;Licznik CW PKP;18;Licznik CW(O);R;40;783;BSM,2,2,2,2,CW;Malinowskiego 1;Miasto;A;Praca;Bialogard;54,0117104 15,9554018;07.06.2017 15:29;2;1
+5025;LC K10-25 CO;Licznik CO BSM/K;17;Licznik CO(O);R;40;783;BSM,2,1,2,1,CO;Malinowskiego 2;Miasto;A;Praca;Bialogard;54,0117041 15,9543504;07.06.2017 15:29;2;1
+5026;LC K10-26 CW;Licznik CW BSM/K;18;Licznik CW(O);R;40;783;BSM,2,1,2,1,CW;Malinowskiego 2;Miasto;A;Praca;Bialogard;54,0117041 15,9543504;07.06.2017 15:29;2;1
+5027;LC K10-27 CO;Licznik CO BSM/K;17;Licznik CO(O);R;40;783;BSM,2,3,2,3,CO;Malinowskiego 4;Miasto;A;Praca;Bialogard;54,0120950 15,9534277;07.06.2017 15:29;2;1
+5028;LC K10-28 CW;Licznik CW BSM/K;18;Licznik CW(O);R;40;783;BSM,2,3,2,3,CW;Malinowskiego 4;Miasto;A;Praca;Bialogard;54,0120950 15,9534277;07.06.2017 15:29;2;1
+5029;LC K10-29 CO;Licznik CO BSM/G/W-1;17;Licznik CO(O);R;40;783;BSM,2,12,2,12,CO;Olimpijska 1;Miasto;A;Praca;Bialogard;54,0136698 15,9546113;07.06.2017 15:29;2;1
+5030;LC K10-30 CW;Licznik CW BSM/G/W-1;18;Licznik CW(O);R;40;783;BSM,2,12,2,12,CW;Olimpijska 1;Miasto;A;Praca;Bialogard;54,0136698 15,9546113;07.06.2017 15:29;2;1
+5031;LC K10-31 CO;Licznik CO BSM/G/W-1;17;Licznik CO(O);R;40;783;BSM,2,13,2,13,CO;Olimpijska 2;Miasto;A;Praca;Bialogard;54,0135059 15,9559314;07.06.2017 15:29;2;1
+5032;LC K10-32 CW;Licznik CW BSM/G/W-1;18;Licznik CW(O);R;40;783;BSM,2,13,2,13,CW;Olimpijska 2;Miasto;A;Praca;Bialogard;54,0135059 15,9559314;07.06.2017 15:29;2;1
+5033;LC K10-33 CO;Licznik CO BSM/G/W-1;17;Licznik CO(O);R;40;783;BSM,2,14,2,14,CO;Olimpijska 3;Miasto;A;Praca;Bialogard;54,0133483 15,9541397;07.06.2017 15:29;2;1
+5034;LC K10-34 CW;Licznik CW BSM/G/W-1;18;Licznik CW(O);R;40;783;BSM,2,14,2,14,CW;Olimpijska 3;Miasto;A;Praca;Bialogard;54,0133483 15,9541397;07.06.2017 15:29;2;1
+5035;LC K10-35 CO;Licznik CO BSM/G/W-1;17;Licznik CO(O);R;40;783;BSM,2,15,2,15,CO;Olimpijska 4;Miasto;A;Praca;Bialogard;54,0131150 15,9554593;07.06.2017 15:29;2;1
+5036;LC K10-36 CW;Licznik CW BSM/G/W-1;18;Licznik CW(O);R;40;783;BSM,2,15,2,15,CW;Olimpijska 4;Miasto;A;Praca;Bialogard;54,0131150 15,9554593;07.06.2017 15:29;2;1
+5037;LC K10-37 CO;Licznik CO Orange Polska;17;Licznik CO(O);R;40;783;MAN,0,0,0,0,CO;Osiedle Kolobrzeska 2;Miasto;A;Praca;Bialogard;54,0129008 15,9577864;07.06.2017 15:29;2;1
+5038;LC K10-38 CO;Licznik CO BSM/GD/W-1;17;Licznik CO(O);R;40;783;BSM,2,11,2,11,CO;Polna 10;Miasto;A;Praca;Bialogard;54,0134176 15,9526376;07.06.2017 15:29;2;1
+5039;LC K10-39 CW;Licznik CW BSM/GD/W-1;18;Licznik CW(O);R;40;783;BSM,2,11,2,11,CW;Polna 10;Miasto;A;Praca;Bialogard;54,0134176 15,9526376;07.06.2017 15:29;2;1
+5040;LC K10-40 CO;Licznik CO BSM/GD/W-1;17;Licznik CO(O);R;40;783;BSM,2,8,2,8,CO;Polna 5;Miasto;A;Praca;Bialogard;54,0140548 15,9542249;07.06.2017 15:29;2;1
+5041;LC K10-41 CW;Licznik CW BSM/GD/W-1;18;Licznik CW(O);R;40;783;BSM,2,8,2,8,CW;Polna 5;Miasto;A;Praca;Bialogard;54,0140548 15,9542249;07.06.2017 15:29;2;1
+5042;LC K10-42 CO;Licznik CO BSM/GD/W-1;17;Licznik CO(O);R;40;783;BSM,2,40,2,22,CO;Polna 6;Miasto;A;Praca;Bialogard;54,0141966 15,9532754;07.06.2017 15:29;2;1
+5043;LC K10-43 CW;Licznik CW BSM/GD/W-1;18;Licznik CW(O);R;40;783;BSM,2,40,2,22,CW;Polna 6;Miasto;A;Praca;Bialogard;54,0141966 15,9532754;07.06.2017 15:29;2;1
+5044;LC K10-44 CO;Licznik CO BSM/K;17;Licznik CO(O);R;40;783;BSM,2,9,2,9,CO;Polna 7;Miasto;A;Praca;Bialogard;54,0131339 15,9534745;07.06.2017 15:29;2;1
+5045;LC K10-45 CW;Licznik CW BSM/K;18;Licznik CW(O);R;40;783;BSM,2,9,2,9,CW;Polna 7;Miasto;A;Praca;Bialogard;54,0131339 15,9534745;07.06.2017 15:29;2;1
+5046;LC K10-46 CO;Licznik CO BSM/GD/W-1;17;Licznik CO(O);R;40;783;BSM,2,10,2,10,CO;Polna 8;Miasto;A;Praca;Bialogard;54,0137900 15,9535168;07.06.2017 15:29;2;1
+5047;LC K10-47 CW;Licznik CW BSM/GD/W-1;18;Licznik CW(O);R;40;783;BSM,2,10,2,10,CW;Polna 8;Miasto;A;Praca;Bialogard;54,0137900 15,9535168;07.06.2017 15:29;2;1
+5048;LC K10-48 CO;Licznik CO BSM/K;17;Licznik CO(O);R;40;783;BSM,2,4,2,4,CO;Feliksa Stamma 1;Miasto;A;Praca;Bialogard;54,0112613 15,9562018;07.06.2017 15:29;2;1
+5049;LC K10-49 CW;Licznik CW BSM/K;18;Licznik CW(O);R;40;783;BSM,2,4,2,4,CW;Feliksa Stamma 1;Miasto;A;Praca;Bialogard;54,0112613 15,9562018;07.06.2017 15:29;2;1
+5050;LC K10-50 CO;Licznik CO BSM/G/W-1;17;Licznik CO(O);R;40;783;BSM,2,18,2,18,CO;Walasiewiczówny 3;Miasto;A;Praca;Bialogard;54,0146363 15,9521290;07.06.2017 15:29;2;1
+5051;LC K10-51 CW;Licznik CW BSM/G/W-1;18;Licznik CW(O);R;40;783;BSM,2,18,2,18,CW;Walasiewiczówny 3;Miasto;A;Praca;Bialogard;54,0146363 15,9521290;07.06.2017 15:29;2;1
+5052;LC K20-01 CO;Licznik CO WSP ZNW;17;Licznik CO(O);R;32;543;MAN,0,0,0,0,CO;1 maja 32;Miasto;A;Praca;Bialogard;54,0106145 15,9830366;07.06.2017 15:29;2;1
+5053;LC K20-02 CO;Licznik CO WSP ZNW;17;Licznik CO(O);R;32;543;MAN,0,0,0,0,CO;1 maja 34;Miasto;A;Praca;Bialogard;54,0110811 15,9833371;07.06.2017 15:29;2;1
+5054;LC K20-03 CO;Licznik CO Dom M³odzie¿y Rob.;17;Licznik CO(O);R;32;543;MAN,0,0,0,0,CO;Zamojskiego 9;Miasto;A;Praca;Bialogard;54,0113774 15,9852468;07.06.2017 15:29;2;1
+5055;LC K20-04 CO;Licznik CO BSM/KOCH;17;Licznik CO(O);R;32;543;BSM,1,7,0,0,CO;Kochanowskiego 10;Miasto;A;Praca;Bialogard;54,0100786 15,9884333;07.06.2017 15:29;2;1
+5056;LC K20-05 CO;Licznik CO BSM/KOCH;17;Licznik CO(O);R;32;543;BSM,1,120,1,69,CO;Kochanowskiego 12;Miasto;A;Praca;Bialogard;54,0105326 15,9886907;07.06.2017 15:29;2;1
+5057;LC K20-06 CO;Licznik CO BSM/C Biuro;17;Licznik CO(O);R;32;543;BSM,1,141,1,64,CO;Kochanowskiego 26;Miasto;A;Praca;Bialogard;54,0122474 15,9880470;07.06.2017 15:29;2;1
+5058;LC K20-07 CO;Licznik CO BSM/C ;17;Licznik CO(O);R;32;543;BSM,1,4,1,49,CO;Kochanowskiego 28;Miasto;A;Praca;Bialogard;54,0125941 15,9879397;07.06.2017 15:29;2;1
+5059;LC K20-08 CO;Licznik CO BSM/KOCH;17;Licznik CO(O);R;32;543;BSM,1,113,1,67,CO;Kochanowskiego 5;Miasto;A;Praca;Bialogard;54,0100282 15,9896885;07.06.2017 15:29;2;1
+5060;LC K20-09 CO;Licznik CO BSM/PU Biurowiec;17;Licznik CO(O);R;32;543;MAN,0,0,0,0,CO;Kochanowskiego 6;Miasto;A;Praca;Bialogard;54,0093977 15,9889697;07.06.2017 15:29;2;1
+5061;LC K20-10 CO;Licznik CO BSM/KOCH;17;Licznik CO(O);R;32;543;BSM,1,114,1,32,CO;Kochanowskiego 7;Miasto;A;Praca;Bialogard;54,0101165 15,9890663;07.06.2017 15:29;2;1
+5062;LC K20-11 CO;Licznik CO BSM/KOCH;17;Licznik CO(O);R;32;543;BSM,1,8,1,1,CO;Kochanowskiego 8;Miasto;A;Praca;Bialogard;54,0098643 15,9888517;07.06.2017 15:29;2;1
+5063;LC K20-12 CO;Licznik CO BSM/KOCH;17;Licznik CO(O);R;32;543;BSM,1,115,1,68,CO;Mickiewicza 15;Miasto;A;Praca;Bialogard;54,0107343 15,9881650;07.06.2017 15:29;2;1
+5064;LC K20-13 CO;Licznik CO Urz¹d Skarbowy;17;Licznik CO(O);R;32;543;MAN,0,0,0,0,CO;Mickiewicza 3;Miasto;A;Praca;Bialogard;54,0103056 15,9851717;07.06.2017 15:29;2;1
+5065;LC K20-14 CO;Licznik CO BSM/C;17;Licznik CO(O);R;32;543;BSM,1,1,1,44,CO;Modrzewskiego 1;Miasto;A;Praca;Bialogard;54,0123001 15,9867220;07.06.2017 15:29;2;1
+5066;LC K20-15 CO;Licznik CO BSM/C;17;Licznik CO(O);R;32;543;BSM,1,2,1,43,CO;Modrzewskiego 2;Miasto;A;Praca;Bialogard;54,0121268 15,9863786;07.06.2017 15:29;2;1
+5067;LC K20-16 CO;Licznik CO BSM/C;17;Licznik CO(O);R;32;543;BSM,1,3,1,51,CO;Modrzewskiego 3;Miasto;A;Praca;Bialogard;54,0123852 15,9872852;07.06.2017 15:29;2;1
+5068;LC K20-17 CO;Licznik CO BSM/C;17;Licznik CO(O);R;32;543;BSM,1,10,1,46,CO;Modrzewskiego 4;Miasto;A;Praca;Bialogard;54,0120795 15,9873228;07.06.2017 15:29;2;1
+5069;LC K20-18 CO;Licznik CO WSP ZNW;17;Licznik CO(O);R;32;543;MAN,0,0,0,0,CO;Reja 2;Miasto;A;Praca;Bialogard;54,0112987 15,9863892;07.06.2017 15:29;2;1
+5070;LC K20-19 CO;Licznik CO WSP ZNW;17;Licznik CO(O);R;32;543;MAN,0,0,0,0,CO;Reja 4;Miasto;A;Praca;Bialogard;54,0115495 15,9873620;07.06.2017 15:29;2;1
+5071;LC K20-20 CO;Licznik CO PKP;17;Licznik CO(O);R;32;543;MAN,0,0,0,0,CO;S³owackiego 11;Miasto;A;Praca;Bialogard;54,0104185 15,9874726;07.06.2017 15:29;2;1
+5072;LC K20-21 CO;Licznik CO BSM/CD;17;Licznik CO(O);R;32;543;BSM,1,9,1,47,CO;Wyspiañskiego 15;Miasto;A;Praca;Bialogard;54,0127764 15,9858847;07.06.2017 15:29;2;1
+5073;LC K20-22 CO;Licznik CO BSM/CD;17;Licznik CO(O);R;32;543;BSM,1,118,1,52,CO;Wyspiañskiego 17;Miasto;A;Praca;Bialogard;54,0128899 15,9869147;07.06.2017 15:29;2;1
+5074;LC K20-23 CO;Licznik CO BSM/CD;17;Licznik CO(O);R;32;543;BSM,1,11,1,29,CO;Zamojskiego 14;Miasto;A;Praca;Bialogard;54,0110111 15,9857882;07.06.2017 15:29;2;1
+5075;LC K20-24 CO;Licznik CO BSM/CD;17;Licznik CO(O);R;32;543;BSM,1,6,1,53,CO;Zamojskiego 18;Miasto;A;Praca;Bialogard;54,0124738 15,9852517;07.06.2017 15:29;2;1
+5076;LC K30-01 CO;Licznik CO BTBS-32;17;Licznik CO(O);R;33;573;BSM,1,29,1,13,CO;Chopina 27B;Miasto;A;Praca;Bialogard;54,0075781 16,0059077;07.06.2017 15:29;2;1
+5077;LC K30-02 CO;Licznik CO BTBS-32;17;Licznik CO(O);R;33;573;BSM,1,30,1,14,CO;Chopina 27C;Miasto;A;Praca;Bialogard;54,0075529 16,0056073;07.06.2017 15:29;2;1
+5078;LC K30-03 CO;Licznik CO ZNW-74;17;Licznik CO(O);R;33;574;BSM,1,27,1,63,CO;Moniuszki 19B;Miasto;A;Praca;Bialogard;54,0056396 16,0047018;07.06.2017 15:29;2;1
+5079;LC K30-04 CO;Licznik CO ZNW-74;17;Licznik CO(O);R;33;574;BSM,1,26,1,15,CO;Moniuszki 19D;Miasto;A;Praca;Bialogard;54,0059864 16,0049056;07.06.2017 15:29;2;1
+5080;LC K30-05 CO;Licznik CO ZNW-86;17;Licznik CO(O);R;33;573;BSM,1,122,1,8,CO;Nowowiejskiego 2B;Miasto;A;Praca;Bialogard;54,0055409 16,0054401;07.06.2017 15:29;2;1
+5081;LC K30-06 CO;Licznik CO ZNW-86;17;Licznik CO(O);R;33;573;BSM,1,105,1,9,CO;Nowowiejskiego 2D;Miasto;A;Praca;Bialogard;54,0058688 16,0054508;07.06.2017 15:29;2;1
+5082;LC K30-07 CO;Licznik CO ZNW-86;17;Licznik CO(O);R;33;573;BSM,1,31,1,7,CO;Nowowiejskiego 2F;Miasto;A;Praca;Bialogard;54,0061273 16,0055796;07.06.2017 15:29;2;1
+5083;LC K30-08 CO;Licznik CO ZNW-86;17;Licznik CO(O);R;33;573;BSM,1,123,1,12,CO;Nowowiejskiego 2H;Miasto;A;Praca;Bialogard;54,0064489 16,0056976;07.06.2017 15:29;2;1
+5084;LC K30-09 CO;Licznik CO ZNW-73;17;Licznik CO(O);R;33;574;BSM,1,106,1,11,CO;Nowowiejskiego 4A;Miasto;A;Praca;Bialogard;54,0065561 16,0052899;07.06.2017 15:29;2;1
+5085;LC K30-10 CO;Licznik CO ZNW-73;17;Licznik CO(O);R;33;574;BSM,1,32,1,2,CO;Nowowiejskiego 4C;Miasto;A;Praca;Bialogard;54,0067704 16,0053865;07.06.2017 15:29;2;1
+5086;LC K30-11 CO;Licznik CO ZNW-83;17;Licznik CO(O);R;33;573;BSM,1,107,1,65,CO;Nowowiejskiego 6A;Miasto;A;Praca;Bialogard;54,0068020 16,0059765;07.06.2017 15:29;2;1
+5087;LC K30-12 CO;Licznik CO ZNW-83;17;Licznik CO(O);R;33;573;BSM,1,28,1,10,CO;Nowowiejskiego 6C;Miasto;A;Praca;Bialogard;54,0072749 16,0061804;07.06.2017 15:29;2;1
+5088;LC K30-13 CO;Licznik CO BSM/A;17;Licznik CO(O);R;33;574;BSM,1,102,1,22,CO;Piastów 29;Miasto;A;Praca;Bialogard;54,0067641 16,0044745;07.06.2017 15:29;2;1
+5089;LC K30-14 CO;Licznik CO BSM/A;17;Licznik CO(O);R;33;574;BSM,1,100,1,66,CO;Piastów 27 A-B;Miasto;A;Praca;Bialogard;54,0074325 16,0047427;07.06.2017 15:29;2;1
+5090;LC K30-15 CO;Licznik CO BSM/A;17;Licznik CO(O);R;33;574;BSM,1,101,1,4,CO;Piastów 27 C-D;Miasto;A;Praca;Bialogard;54,0070794 16,0046140;07.06.2017 15:29;2;1
+5091;LC K30-16 CO;Licznik CO BSM/A;17;Licznik CO(O);R;33;574;BSM,1,103,1,35,CO;Piastów 31 A-B;Miasto;A;Praca;Bialogard;54,0063858 16,0044745;07.06.2017 15:29;2;1
+5092;LC K30-17 CO;Licznik CO BSM/A;17;Licznik CO(O);R;33;574;BSM,1,104,1,48,CO;Piastów 31 C;Miasto;A;Praca;Bialogard;54,0063165 16,0050646;07.06.2017 15:29;2;1
+5093;LC K30-18 CO;Licznik CO BSM/A;17;Licznik CO(O);R;33;574;BSM,1,33,1,40,CO;Piastów 35;Miasto;A;Praca;Bialogard;54,0060706 16,0041741;07.06.2017 15:29;2;1
+5094;LC K40-01 CO;Licznik CO BSM Bialogard;17;Licznik CO(O);R;34;543;BSM,1,110,1,25,CO;Bogus³awa X 1;Miasto;A;Praca;Bialogard;54,0115774 16,0035947;07.06.2017 15:29;2;1
+5095;LC K40-02 CW;Licznik CW BSM/CW;18;Licznik CW(O);R;34;543;BSM,1,110,1,25,CW;Bogus³awa X 1;Miasto;A;Praca;Bialogard;54,0115774 16,0035947;07.06.2017 15:29;2;1
+5096;LC K40-03 CO;Licznik CO ZNW-79;17;Licznik CO(O);R;34;543;BSM,1,132,1,54,CO;Boles³awa Œmia³ego 61-63;Miasto;A;Praca;Bialogard;54,0114550 16,0009018;07.06.2017 15:29;2;1
+5097;LC K40-04 CW;Licznik CW ZNW-79;18;Licznik CW(O);R;34;543;BSM,1,132,1,54,CW;Boles³awa Œmia³ego 61-63;Miasto;A;Praca;Bialogard;54,0114550 16,0009018;07.06.2017 15:29;2;1
+5098;LC K20-25 CO;Licznik CO Groñski;17;Licznik CO(O);R;32;543;MAN,0,0,0,0,CO;Kochanowskiego 3;Miasto;A;Praca;Bialogard;54,0100282 15,9856885;07.06.2017 15:29;2;1
+5099;LC K40-06 ;Licznik FREE 1;18;Licznik CW(O);R;0;0;OUT,0,0,0,0,CW;;Miasto;A;Praca;Bialogard;;07.06.2017 15:29;2;1
+5100;LC K40-07 CO;Licznik CO BSM-Bialogard;17;Licznik CO(O);R;34;543;BSM,1,108,1,28,CO;Boles³awa Œmia³ego 65;Miasto;A;Praca;Bialogard;54,0110641 16,0020605;07.06.2017 15:29;2;1
+5101;LC K40-08 CW;Licznik CW BSM/CW;18;Licznik CW(O);R;34;543;BSM,1,108,1,28,CW;Boles³awa Œmia³ego 65;Miasto;A;Praca;Bialogard;54,0110641 16,0020605;07.06.2017 15:29;2;1
+5102;LC K40-09 CO;Licznik CO BSM Bialogard;17;Licznik CO(O);R;34;543;BSM,1,109,1,26,CO;Boles³awa Œmia³ego 65 A;Miasto;A;Praca;Bialogard;54,0114928 16,0021249;07.06.2017 15:29;2;1
+5103;LC K40-10 CW;Licznik CW BSM/CW;18;Licznik CW(O);R;34;543;BSM,1,109,1,26,CW;Boles³awa Œmia³ego 65 A;Miasto;A;Praca;Bialogard;54,0114928 16,0021249;07.06.2017 15:29;2;1
+5104;LC K40-11 CO;Licznik CO WMN;17;Licznik CO(O);R;34;543;MAN,0,0,0,0,CO;Boles³awa Œmia³ego 53-59;Miasto;A;Praca;Bialogard;54,0117260 16,0001937;07.06.2017 15:29;2;1
+5105;LC K40-12 CW;Licznik CW WMN;18;Licznik CW(O);R;34;543;MAN,0,0,0,0,CW;Boles³awa Œmia³ego 53-59;Miasto;A;Praca;Bialogard;54,0117260 16,0001937;07.06.2017 15:29;2;1
+5106;LC K40-13 CO;Licznik CO ZNW-84;17;Licznik CO(O);R;34;543;BSM,1,121,1,50,CO;Zwyciêstwa 40;Miasto;A;Praca;Bialogard;54,0112469 16,0034982;07.06.2017 15:29;2;1
+5107;LC K40-14 CW;Licznik CW ZNW-84;18;Licznik CW(O);R;34;543;BSM,1,121,1,50,CW;Zwyciêstwa 40;Miasto;A;Praca;Bialogard;54,0112469 16,0034982;07.06.2017 15:29;2;1
+5108;LC K50-01 CO;Licznik CO BSM/S;17;Licznik CO(O);R;35;633;BSM,1,24,1,17,CO;Lelewela 1;Miasto;A;Praca;Bialogard;54,0063273 15,9832254;07.06.2017 15:29;2;1
+5109;LC K50-02 CO;Licznik CO BSM/S;17;Licznik CO(O);R;35;633;BSM,1,23,1,18,CO;Lelewela 3;Miasto;A;Praca;Bialogard;54,0064732 15,9837833;07.06.2017 15:29;2;1
+5110;LC K50-03 CO;Licznik CO BSM/S;17;Licznik CO(O);R;35;633;BSM,1,22,1,21,CO;Lelewela 5;Miasto;A;Praca;Bialogard;54,0066930 15,9843627;07.06.2017 15:29;2;1
+5111;LC K50-04 CO;Licznik CO BSM/S;17;Licznik CO(O);R;35;633;BSM,1,21,1,31,CO;Lelewela 7;Miasto;A;Praca;Bialogard;54,0067939 15,9849313;07.06.2017 15:29;2;1
+5112;LC K50-05 CO;Licznik CO BSM/S;17;Licznik CO(O);R;35;633;BSM,1,20,1,24,CO;Lipowa 2;Miasto;A;Praca;Bialogard;54,0066426 15,9811119;07.06.2017 15:29;2;1
+5113;LC K50-06 CW;Licznik CW BSM/CW;18;Licznik CW(O);R;35;634;BSM,2,25,2,25,CW;Osiedle Sikorskiego ;Miasto;A;Praca;Bialogard;54,0065645 15,9824842;07.06.2017 15:29;2;1
+5114;LC K50-07 CO;Licznik CO BSM/S;17;Licznik CO(O);R;35;633;BSM,1,19,1,30,CO;Sikorskiego 3;Miasto;A;Praca;Bialogard;54,0064282 15,9821418;07.06.2017 15:29;2;1
+5115;LC K50-08 CO;Licznik CO PBK SA BSM/U;17;Licznik CO(O);R;35;633;BSM,1,130,1,38,CO;Wojska Polskiego 15 Bank;Miasto;A;Praca;Bialogard;54,0057671 15,9817852;07.06.2017 15:29;2;1
+5116;LC K50-09 CO;Licznik CO  BSM/S;17;Licznik CO(O);R;35;633;BSM,1,112,1,16,CO;Wojska Polskiego 11 A-B;Miasto;A;Praca;Bialogard;54,0059058 15,9847892;07.06.2017 15:29;2;1
+5117;LC K50-10 CO;Licznik CO  BSM/S;17;Licznik CO(O);R;35;633;BSM,1,116,1,19,CO;Wojska Polskiego 13 A-B;Miasto;A;Praca;Bialogard;54,0057355 15,9832336;07.06.2017 15:29;2;1
+5118;LC K50-11 CO;Licznik CO  BSM/S;17;Licznik CO(O);R;35;633;BSM,1,125,1,36,CO;Wojska Polskiego 15;Miasto;A;Praca;Bialogard;54,0059625 15,9811629;07.06.2017 15:29;2;1
+5119;LC K50-12 CO;Licznik CO  BSM/Rej. DR.;17;Licznik CO(O);R;35;633;MAN,0,0,0,0,CO;Wojska Polskiego 62,63,64;Miasto;A;Praca;Bialogard;54,0050266 15,9829010;07.06.2017 15:29;2;1
+5120;LC K50-13 ;Licznik FREE2;18;Licznik CW(O);R;0;0;OUT,0,0,0,0,CO;;Miasto;A;Praca;Bialogard;;07.06.2017 15:29;2;1
+5121;LC K50-14 CO;Licznik CO  BSM/S;17;Licznik CO(O);R;35;633;BSM,1,18,1,27,CO;Wojska Polskiego 65,67;Miasto;A;Praca;Bialogard;54,0053707 15,9835159;07.06.2017 15:29;2;1
+5122;LC K60-01 CO;Licznik CO  BSM/B;17;Licznik CO(O);R;36;663;BSM,1,15,1,3,CO;Mieszka I 10;Miasto;A;Praca;Bialogard;54,0033711 16,0012160;07.06.2017 15:29;2;1
+5123;LC K60-02 CO;Licznik CO  BSM/B;17;Licznik CO(O);R;36;663;BSM,1,16,1,5,CO;Mieszka I 12;Miasto;A;Praca;Bialogard;54,0035035 16,0007547;07.06.2017 15:29;2;1
+5124;LC K60-03 CO;Licznik CO  BSM/B;17;Licznik CO(O);R;36;663;BSM,1,17,1,6,CO;Mieszka I 14;Miasto;A;Praca;Bialogard;54,0037053 16,0003255;07.06.2017 15:29;2;1
+5125;LC K60-04 CO;Licznik CO  BSM/B;17;Licznik CO(O);R;36;663;BSM,1,12,1,42,CO;Mieszka I 2;Miasto;A;Praca;Bialogard;54,0027153 16,0029166;07.06.2017 15:29;2;1
+5126;LC K60-05 CO;Licznik CO  BSM/B;17;Licznik CO(O);R;36;663;BSM,1,13,1,41,CO;Mieszka I 4;Miasto;A;Praca;Bialogard;54,0028414 16,0024713;07.06.2017 15:29;2;1
+5127;LC K60-06 CO;Licznik CO  BSM/B;17;Licznik CO(O);R;36;663;BSM,1,117,1,34,CO;Mieszka I 6;Miasto;A;Praca;Bialogard;54,0029928 16,0021655;07.06.2017 15:29;2;1
+5128;LC K60-07 CO;Licznik CO  BSM/B;17;Licznik CO(O);R;36;663;BSM,1,14,1,20,CO;Mieszka I 8;Miasto;A;Praca;Bialogard;54,0032166 16,0016130;07.06.2017 15:29;2;1
+5129;LC K70-01 CO;Licznik CO  Bartkowiak;17;Licznik CO(O);R;37;693;MAN,0,0,0,0,CO;Czeska 4;Miasto;A;Praca;Bialogard;54,0074316 15,9882117;07.06.2017 15:29;2;1
+5130;LC K70-02 CO;Licznik CO  BTBS-44;17;Licznik CO(O);R;37;693;BSM,1,134,0,0,CO;Grunwaldzka 28;Miasto;A;Praca;Bialogard;54,0079045 15,9877933;07.06.2017 15:29;2;1
+5131;LC K70-03 CW;Licznik CW  BTBS-44;18;Licznik CW(O);R;37;694;BSM,1,134,0,0,CW;Grunwaldzka 28;Miasto;A;Praca;Bialogard;54,0079045 15,9877933;07.06.2017 15:29;2;1
+5132;LC K70-04 CO;Licznik CO  BTBS-38;17;Licznik CO(O);R;37;693;BSM,1,127,1,33,CO;Raczyñskiego 1;Miasto;A;Praca;Bialogard;54,0067192 15,9887482;07.06.2017 15:29;2;1
+5133;LC K70-05 CO;Licznik CO  ZNW-72;17;Licznik CO(O);R;37;693;BSM,1,124,1,23,CO;Raczyñskiego 3;Miasto;A;Praca;Bialogard;54,0070029 15,9877933;07.06.2017 15:29;2;1
+5134;LC K70-06 CW;Licznik CW  ZNW-72;18;Licznik CW(O);R;37;694;MAN,0,0,0,0,CW;Raczyñskiego 3-5;Miasto;A;Praca;Bialogard;54,0070029 15,9877933;07.06.2017 15:29;2;1
+5135;LC K70-07 CO;Licznik CO  BTBS-39;17;Licznik CO(O);R;37;693;MAN,0,0,0,0,CO;Raczyñskiego 5;Miasto;A;Praca;Bialogard;54,0063724 15,9872891;07.06.2017 15:29;2;1
+5136;LC K70-08 ;Licznik FREE3;18;Licznik CW(O);R;0;0;OUT,0,0,0,0,CW;;Miasto;A;Praca;Bialogard;;07.06.2017 15:29;2;1
+5137;LC K70-09 CO;Licznik CO Netto;17;Licznik CO(O);R;37;693;MAN,0,0,0,0,CO;1 maja 9;Miasto;A;Praca;Bialogard;54,0070155 15,9860338;07.06.2017 15:29;2;1
+5138;LC K70-10 CO;Licznik CO BTBS-40;17;Licznik CO(O);R;37;693;MAN,0,0,0,0,CO;Zamkowa 1;Miasto;A;Praca;Bialogard;54,0066813 15,9854544;07.06.2017 15:29;2;1
+5139;LC K80-01 CO;Licznik CO Alenowicz;17;Licznik CO(O);R;38;723;MAN,0,0,0,0,CO;Plac Wolnoœci 10a;Miasto;A;Praca;Bialogard;54,0043918 15,9906489;07.06.2017 15:29;2;1
+5140;LC K80-02 CO;Licznik CO ZNW-77;17;Licznik CO(O);R;38;723;MAN,0,0,0,0,CO;Plac Wolnoœci 6-10;Miasto;A;Praca;Bialogard;54,0044085 15,9902003;07.06.2017 15:29;2;1
+5141;LC K80-03 CO;Licznik CO ZNW-82;17;Licznik CO(O);R;38;723;MAN,0,0,0,0,CO;Reymonta 1/2;Miasto;A;Praca;Bialogard;54,0040873 15,9900521;07.06.2017 15:29;2;1
+5142;LC K80-04 CO;Licznik CO ZNW-75;17;Licznik CO(O);R;38;723;MAN,0,0,0,0,CO;Staromiejska 9/12/14/15;Miasto;A;Praca;Bialogard;54,0046664 15,9884487;07.06.2017 15:29;2;1
+5143;LC K80-05 CO;Licznik CO ZNW-04;17;Licznik CO(O);R;38;723;BSM,1,126,1,37,CO;Staromiejska 1-3;Miasto;A;Praca;Bialogard;54,0053777 15,9880015;07.06.2017 15:29;2;1
+5144;LC K80-06 CO;Licznik CO Wy¿lic;17;Licznik CO(O);R;38;723;MAN,0,0,0,0,CO;Staromiejska 10;Miasto;A;Praca;Bialogard;54,0048417 15,988847;07.06.2017 15:29;2;1
+5145;LC K80-07 CO;Licznik CO Haber;17;Licznik CO(O);R;38;723;MAN,0,0,0,0,CO;Staromiejska 4;Miasto;A;Praca;Bialogard;54,0052169 15,9886648;07.06.2017 15:29;2;1
+5146;LC K80-08 CO;Licznik CO Pawelczak sklep;17;Licznik CO(O);R;38;723;MAN,0,0,0,0,CO;Staromiejska 9;Miasto;A;Praca;Bialogard;54,0049867 15,9881487;07.06.2017 15:29;2;1
+5147;LC K80-09 CO;Licznik CO BTBS Bialogard;17;Licznik CO(O);R;38;723;MAN,0,0,0,0,CO;Œwiêtochowskiego;Miasto;A;Praca;Bialogard;54,0032464 15,9899381;07.06.2017 15:29;2;1
+5148;LC K80-10 CW;Licznik CW BTBS Bialogard;18;Licznik CW(O);R;38;724;MAN,0,0,0,0,CW;Œwiêtochowskiego;Miasto;A;Praca;Bialogard;54,0032464 15,9899381;07.06.2017 15:29;2;1
