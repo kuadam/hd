@@ -25,7 +25,7 @@ for f in files:
 
 devices = db['device']
 items = []
-with open('urzadzenia_rozliczeniowe_opis.csv', newline='\n') as csvfile:
+with open('res/urzadzenia_rozliczeniowe_opis.csv', newline='\n') as csvfile:
     reader = csv.reader(csvfile, delimiter=";")
     for row in reader:
         item = {"deviceId": row[0],
