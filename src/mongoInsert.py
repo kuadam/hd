@@ -11,10 +11,11 @@ def insert(destdir, resdir, db):
         file = destdir + "/" + f
 
         df = pd.read_csv(file, sep=";", encoding="ISO-8859-1", skiprows=[2], usecols=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-                         skip_blank_lines=True)
+                         skip_blank_lines=True, decimal=',')
 
         df.insert(loc=0, column='deviceId', value=file[-8:-4])
-        df.rename(columns=lambda x: x.replace('.', ''), inplace=True)
+        df.rename(columns=lambda x: x.replace('.', ''), inplace=True, )
+        df.rename(columns=lambda x: x.replace(' ', '_'), inplace=True)
 
         records = db['record']
 
