@@ -33,22 +33,22 @@ def measure():
 
     # compare operations
     find_by_compare(local_src, pd_src, "record", "deviceId", "5004")
-    #join_compare(local_src, pd_src, "record", "device", "deviceId", "deviceId")
-    max_compare(local_src, pd_src, "record", "Energia", "deviceId")
-    min_compare(local_src, pd_src, "record", "Energia", "deviceId")
-    avg_compare(local_src, pd_src, "record", "Energia", "deviceId")
-    sum_compare(local_src, pd_src, "record", "Energia", "deviceId")
+    # join_compare(local_src, pd_src, "record", "device", "deviceId", "deviceId")
+    max_compare(local_src, pd_src, "record", "energia", "deviceid")
+    min_compare(local_src, pd_src, "record", "energia", "deviceid")
+    avg_compare(local_src, pd_src, "record", "energia", "deviceid")
+    sum_compare(local_src, pd_src, "record", "energia", "deviceid")
 
     print("\n\nDone")
 
 
 def main():
     # CREATE DATABASE AND INSERT DATA
-    cassandra_insert(PATH_REC, PATH_DEV)
+    # cassandra_insert(PATH_REC, PATH_DEV)
     # mongoInsert(PATH_REC, PATH_DEV)
 
     # MEASURE AND COMPARE
-    #measure()
+    measure()
 
 
 if __name__ == "__main__":

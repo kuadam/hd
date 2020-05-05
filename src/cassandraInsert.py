@@ -38,12 +38,12 @@ def create(session):
             deviceid      bigint,
             nr_odczytu    bigint,
             data_czas     text,
-            energia       text,
-            t_zewn        text,
-            v_wiatr       text,
-            wilg          text,
-            zachm         text,
-            dlug_dnia     text,
+            energia       float,
+            t_zewn        float,
+            v_wiatr       float,
+            wilg          float,
+            zachm         float,
+            dlug_dnia     float,
             typ_dnia      text,
             pora_roku     text,
             PRIMARY KEY (deviceid,nr_odczytu)
@@ -86,18 +86,19 @@ def insert(path_rec, path_dec, session):
         records.insert(loc=0, column='deviceid', value=filename[-8:-4])
         records.rename(columns=lambda x: x.replace('.', ''), inplace=True)
         records.rename(columns=lambda x: x.replace(' ', '_'), inplace=True)
+        records.replace({',': '.'}, regex=True, inplace=True)
 
         for row in records.itertuples(index=True, name='Pandas'):  # try batch to optimize
             session.execute(prepared, (
                 int(getattr(row, "deviceid")),
                 int(getattr(row, "Nr_odczytu")),
                 getattr(row, "Data_czas"),
-                getattr(row, "Energia"),
-                getattr(row, "T_zewn"),
-                getattr(row, "V_wiatr"),
-                getattr(row, "Wilg"),
-                getattr(row, "Zachm"),
-                getattr(row, "Dlug_dnia"),
+                float(getattr(row, "Energia")),
+                float(getattr(row, "T_zewn")),
+                float(getattr(row, "V_wiatr")),
+                float(getattr(row, "Wilg")),
+                float(getattr(row, "Zachm")),
+                float(getattr(row, "Dlug_dnia")),
                 getattr(row, "Typ_dnia"),
                 getattr(row, "Pora_roku")
             ))
