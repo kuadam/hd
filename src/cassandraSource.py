@@ -25,10 +25,21 @@ class LocalCassandraSource:
         data_merge = pd.merge(data_records, data_devices, how='left', left_on=left_column.lower(), right_on=right_column.lower())
         return data_merge
 
-    def max(self,table, column):
-        sql_query = "SELECT * FROM {}.{};".format(KEYSPACE,table)
-        rslt = self.session.execute(sql_query)
-        return rslt._current_rows[column].max()
+    def max(self, table_name, column, group_by):
+        pass
+
+    def min(self, table_name, column, group_by):
+        pass
+
+    def avg(self, table_name, column, group_by):
+        pass
+
+    def sum(self, table_name, column, group_by):
+        pass
+    # def max(self,table, column):
+    #     sql_query = "SELECT * FROM {}.{};".format(KEYSPACE,table)
+    #     rslt = self.session.execute(sql_query)
+    #     return rslt._current_rows[column].max()
 
 class CassandraSource:
     def __init__(self, session):
@@ -42,8 +53,18 @@ class CassandraSource:
     def join(self,left_column, right_column):
         return -1 #not supported
 
+    def max(self, table_name, column, group_by):
+        pass
 
-    def max(self,table, column):
-        sql_query = "SELECT MAX({}) FROM {}.{};".format(column, KEYSPACE,table)
-        rslt = self.session.execute(sql_query)
-        return rslt._current_rows
+    def min(self, table_name, column, group_by):
+        pass
+
+    def avg(self, table_name, column, group_by):
+        pass
+
+    def sum(self, table_name, column, group_by):
+        pass
+    # def max(self,table, column):
+    #     sql_query = "SELECT MAX({}) FROM {}.{};".format(column, KEYSPACE,table)
+    #     rslt = self.session.execute(sql_query)
+    #     return rslt._current_rows

@@ -4,6 +4,12 @@ import pandas as pd
 from os import listdir
 from os.path import isfile, join
 
+def mongoInsert(PATH_REC, PATH_DEV):
+    client = MongoClient()
+    db = client['hd']
+    insert(PATH_REC, PATH_DEV, db)
+
+
 
 def insert(destdir, resdir, db):
     files = [f for f in listdir(destdir) if isfile(join(destdir, f))]
@@ -13,7 +19,7 @@ def insert(destdir, resdir, db):
         df = pd.read_csv(file, sep=";", encoding="ISO-8859-1", skiprows=[2], usecols=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
                          skip_blank_lines=True, decimal=',')
 
-        df.insert(loc=0, column='deviceId', value=file[-8:-4])
+        df.insert(loc=0, column='deviceid', value=file[-8:-4])
         df.rename(columns=lambda x: x.replace('.', ''), inplace=True, )
         df.rename(columns=lambda x: x.replace(' ', '_'), inplace=True)
 
@@ -28,7 +34,7 @@ def insert(destdir, resdir, db):
     with open(resdir+'urzadzenia_rozliczeniowe_opis.csv', newline='\n') as csvfile:
         reader = csv.reader(csvfile, delimiter=";")
         for row in reader:
-            item = {"deviceId": row[0],
+            item = {"deviceid": row[0],
                     "code": row[1],
                     "name": row[2],
                     "a": row[3],
