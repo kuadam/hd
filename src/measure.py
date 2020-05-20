@@ -41,6 +41,16 @@ def find_by_compare(local_source, push_down_source, table_name, column, value):
 '''JOIN'''
 
 
+def join_measure_cross(source, left_table_name, right_table_name, push_down=True):
+    start_time = time.time()
+    df = source.join_cross(left_table_name, right_table_name)
+    end_time = time.time()
+    if isinstance(df, int):
+        show_params(end_time - start_time, df, push_down)
+        return
+    show_params(end_time - start_time, df.shape[0], push_down)
+
+
 def join_measure(source, left_table_name, right_table_name, left_column, right_column, push_down=True):
     start_time = time.time()
     df = source.join(left_table_name, right_table_name, left_column, right_column)
@@ -49,6 +59,14 @@ def join_measure(source, left_table_name, right_table_name, left_column, right_c
         show_params(end_time - start_time, df, push_down)
         return
     show_params(end_time - start_time, df.shape[0], push_down)
+
+
+def join_compare_cross(local_source, push_down_source, left_table_name, right_table_name):
+    print("\n=================================")
+    print(f"Crossjoin\n")
+    join_measure_cross(push_down_source, left_table_name, right_table_name, True)
+    join_measure_cross(local_source, left_table_name, right_table_name, False)
+    print("=================================")
 
 
 def join_compare(local_source, push_down_source, left_table_name, right_table_name, left_column, right_column):
@@ -120,6 +138,7 @@ def avg_compare(local_source, push_down_source, table_name, column, group_by):
     avg_measure(push_down_source, table_name, column, group_by, True)
     avg_measure(local_source, table_name, column, group_by, False)
     print("=================================")
+
 
 '''SUM'''
 

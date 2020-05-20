@@ -47,6 +47,7 @@ def measure():
     avg_compare(local_src, pd_src, "record", "energia", "deviceId")
     sum_compare(local_src, pd_src, "record", "energia", "deviceId")
 
+
     print("\n\nDone")
 
 
