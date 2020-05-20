@@ -12,6 +12,15 @@ class LocalMongoSource:
         data_frame = data_frame[data_frame[column] == value]
         return data_frame
 
+    def join_cross(self, left_table_name, right_table_name):
+        data_records = pd.DataFrame(list(self.db[left_table_name].find()))
+        data_devices = pd.DataFrame(list(self.db[right_table_name].find()))
+        data_records['key'] = 0
+        data_devices['key'] = 0
+        data_merge = pd.merge(data_records, data_devices, how='left', on='key')
+        data_merge.drop('key', 1, inplace=True)
+        return data_merge
+
     def join(self, left_table_name, right_table_name, left_column, right_column):
         data_records = pd.DataFrame(list(self.db[left_table_name].find()))
         data_devices = pd.DataFrame(list(self.db[right_table_name].find()))
@@ -50,6 +59,22 @@ class MongoSource:
     def find_by(self, table_name, column, value):
         table = self.db[table_name]
         return pd.DataFrame(list(table.find({column: value})))
+
+    def join_cross(self, left_table_name, right_table_name):
+        left_table = self.db[left_table_name]
+        pipeline = [
+            {"$lookup": {'from': right_table_name,
+                         'localField': "cJoinField",
+                         'foreignField': "crossJField",
+                         'as': 'rec'}
+             },
+            {"$unwind": {
+                'path': "$rec"
+            }
+            }
+
+        ]
+        return pd.DataFrame(list(left_table.aggregate(pipeline)))
 
     def join(self, left_table_name, right_table_name, left_column, right_column):
         left_table = self.db[left_table_name]

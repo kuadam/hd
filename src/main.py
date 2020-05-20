@@ -13,8 +13,8 @@ PATH_DEV = "../res/"
 def measure():
     # choose database
     #db = ""
-    # db = "mongo"
-    db = "cassandra"
+    db = "mongo"
+    #db = "cassandra"
     if db == "cassandra":
         cluster = Cluster()
         session = cluster.connect()
@@ -32,23 +32,24 @@ def measure():
         return
 
     # compare operations
-    find_by_compare(local_src, pd_src, "record", "deviceId", "5004")
-    #join_compare(local_src, pd_src, "record", "device", "deviceId", "deviceId")
-    max_compare(local_src, pd_src, "record", "Energia", "deviceId")
-    min_compare(local_src, pd_src, "record", "Energia", "deviceId")
-    avg_compare(local_src, pd_src, "record", "Energia", "deviceId")
-    sum_compare(local_src, pd_src, "record", "Energia", "deviceId")
+    #find_by_compare(local_src, pd_src, "record", "deviceid", "5004")
+    #join_compare(local_src, pd_src, "record", "device", "deviceid", "deviceid")
+    #join_compare_cross(local_src, pd_src, "record", "device")
+    #max_compare(local_src, pd_src, "record", "Energia", "deviceid")
+    #min_compare(local_src, pd_src, "record", "Energia", "deviceid")
+    #avg_compare(local_src, pd_src, "record", "Energia", "deviceid")
+    #sum_compare(local_src, pd_src, "record", "Energia", "deviceid")
 
     print("\n\nDone")
 
 
 def main():
     # CREATE DATABASE AND INSERT DATA
-    cassandra_insert(PATH_REC, PATH_DEV)
-    # mongoInsert(PATH_REC, PATH_DEV)
+    #cassandra_insert(PATH_REC, PATH_DEV)
+     #mongoInsert(PATH_REC, PATH_DEV)
 
     # MEASURE AND COMPARE
-    #measure()
+    measure()
 
 
 if __name__ == "__main__":
