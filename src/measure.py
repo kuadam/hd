@@ -87,7 +87,7 @@ def max_measure(source, table_name, column, group_by, push_down=True):
     if isinstance(df, int):
         show_params(end_time - start_time, df, push_down)
         return
-    show_params(end_time - start_time, 1, push_down)
+    show_params(end_time - start_time, df.shape[0], push_down)
 
 
 def max_compare(local_source, push_down_source, table_name, column, group_by):
@@ -108,7 +108,7 @@ def min_measure(source, table_name, column, group_by, push_down=True):
     if isinstance(df, int):
         show_params(end_time - start_time, df, push_down)
         return
-    show_params(end_time - start_time, 1, push_down)
+    show_params(end_time - start_time, df.shape[0], push_down)
 
 
 def min_compare(local_source, push_down_source, table_name, column, group_by):
@@ -125,12 +125,11 @@ def min_compare(local_source, push_down_source, table_name, column, group_by):
 def avg_measure(source, table_name, column, group_by, push_down=True):
     start_time = time.time()
     df = source.avg(table_name, column, group_by)
-    print(df)
     end_time = time.time()
     if isinstance(df, int):
         show_params(end_time - start_time, df, push_down)
         return
-    show_params(end_time - start_time, 1, push_down)
+    show_params(end_time - start_time, df.shape[0], push_down)
 
 
 def avg_compare(local_source, push_down_source, table_name, column, group_by):
@@ -147,12 +146,11 @@ def avg_compare(local_source, push_down_source, table_name, column, group_by):
 def sum_measure(source, table_name, column, group_by, push_down=True):
     start_time = time.time()
     df = source.sum(table_name, column, group_by)
-    print(df)
     end_time = time.time()
     if isinstance(df, int):
         show_params(end_time - start_time, df, push_down)
         return
-    show_params(end_time - start_time, 1, push_down)
+    show_params(end_time - start_time, df.shape[0], push_down)
 
 
 def sum_compare(local_source, push_down_source, table_name, column, group_by):

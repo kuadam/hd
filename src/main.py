@@ -1,3 +1,4 @@
+import pyodbc
 from cassandra.cluster import Cluster
 from pymongo import MongoClient
 from src.cassandraInsert import cassandra_insert
@@ -6,15 +7,18 @@ from src.measure import *
 from src.mongoInsert import mongoInsert
 from src.mongoSource import *
 
+from src.sqlServerInsert import sqlServer_insert
+from src.sqlServerSource import *
+
 PATH_REC = "../res/bialogard_archh_1/"
 PATH_DEV = "../res/"
 
 
 def measure():
     # choose database
-    #db = ""
-    db = "mongo"
-    #db = "cassandra"
+    # db = "mongo"
+    # db = "cassandra"
+    db = "sqlServer"
     if db == "cassandra":
         cluster = Cluster()
         session = cluster.connect()
@@ -27,27 +31,31 @@ def measure():
         db = client['hd']
         local_src = LocalMongoSource(db)
         pd_src = MongoSource(db)
+    elif db == "sqlServer":
+        cnxn = pyodbc.connect(r'Driver={SQL Server};Server=.\SQLEXPRESS;Database=hd;Trusted_Connection=yes;')
+        local_src = LocalSqlServerSource(cnxn)
+        pd_src = SqlServerSource(cnxn)
     else:
         print("database " + db + " not found :(")
         return
 
     # compare operations
-    #find_by_compare(local_src, pd_src, "record", "deviceid", "5004")
-    #join_compare(local_src, pd_src, "record", "device", "deviceid", "deviceid")
-    #join_compare_cross(local_src, pd_src, "record", "device")
-    #max_compare(local_src, pd_src, "record", "Energia", "deviceid")
-    #min_compare(local_src, pd_src, "record", "Energia", "deviceid")
-    #avg_compare(local_src, pd_src, "record", "Energia", "deviceid")
-    #sum_compare(local_src, pd_src, "record", "Energia", "deviceid")
+    find_by_compare(local_src, pd_src, "record", "deviceId", "5004")
+    join_compare(local_src, pd_src, "record", "device", "deviceId", "deviceId")
+    max_compare(local_src, pd_src, "record", "energia", "deviceId")
+    min_compare(local_src, pd_src, "record", "energia", "deviceId")
+    avg_compare(local_src, pd_src, "record", "energia", "deviceId")
+    sum_compare(local_src, pd_src, "record", "energia", "deviceId")
+
 
     print("\n\nDone")
 
 
 def main():
     # CREATE DATABASE AND INSERT DATA
-    #cassandra_insert(PATH_REC, PATH_DEV)
-     #mongoInsert(PATH_REC, PATH_DEV)
-
+    # cassandra_insert(PATH_REC, PATH_DEV)
+    # mongoInsert(PATH_REC, PATH_DEV)
+    # sqlServer_insert(PATH_REC, PATH_DEV)
     # MEASURE AND COMPARE
     measure()
 
