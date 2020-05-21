@@ -41,11 +41,11 @@ def measure():
 
     # compare operations
     find_by_compare(local_src, pd_src, "record", "deviceId", "5004")
-    join_compare(local_src, pd_src, "record", "device", "deviceId", "deviceId")
-    max_compare(local_src, pd_src, "record", "energia", "deviceId")
-    min_compare(local_src, pd_src, "record", "energia", "deviceId")
-    avg_compare(local_src, pd_src, "record", "energia", "deviceId")
-    sum_compare(local_src, pd_src, "record", "energia", "deviceId")
+    # join_compare(local_src, pd_src, "record", "device", "deviceId", "deviceId")
+    max_compare(local_src, pd_src, "record", "energia", "deviceid")
+    min_compare(local_src, pd_src, "record", "energia", "deviceid")
+    avg_compare(local_src, pd_src, "record", "energia", "deviceid")
+    sum_compare(local_src, pd_src, "record", "energia", "deviceid")
 
 
     print("\n\nDone")

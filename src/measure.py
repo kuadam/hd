@@ -87,7 +87,7 @@ def max_measure(source, table_name, column, group_by, push_down=True):
     if isinstance(df, int):
         show_params(end_time - start_time, df, push_down)
         return
-    show_params(end_time - start_time, df.shape[0], push_down)
+    show_params(end_time - start_time,  df.shape[0], push_down)
 
 
 def max_compare(local_source, push_down_source, table_name, column, group_by):
