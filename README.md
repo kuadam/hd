@@ -7,10 +7,10 @@ Projekt zaliczeniowy na laboratoria przedmiotu Hurtownie danych i przetwarzanie 
 - [X] MondoDB - podstawowe zapytania
 - [X] Cassandra - podstawowe zapytania
 - [ ] Kafka - podstawowe zapytania
-- [ ] SQL Server - podstawowe zapytania
+- [X] SQL Server - podstawowe zapytania
 - [ ] Cassandra - join 
 - [ ] Parsowanie argumentów wejściowych
-- [ ] dokumentacja - uzupełnić
+- [X] dokumentacja - uzupełnić
 - [ ] MondoDB - optymalizacja zapytań
 - [ ] Cassandra - optymalizacja zapytań
 - [ ] Kafka - optymalizacja zapytań
