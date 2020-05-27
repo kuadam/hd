@@ -10,6 +10,9 @@ from src.mongoSource import *
 from src.sqlServerInsert import sqlServer_insert
 from src.sqlServerSource import *
 
+
+from src.userInterface import *
+
 PATH_REC = "../res/bialogard_archh_1/"
 PATH_DEV = "../res/"
 
@@ -50,6 +53,9 @@ def measure():
 
     print("\n\nDone")
 
+def uitests():
+    test()
+
 
 def main():
     # CREATE DATABASE AND INSERT DATA
@@ -57,8 +63,8 @@ def main():
     # mongoInsert(PATH_REC, PATH_DEV)
     # sqlServer_insert(PATH_REC, PATH_DEV)
     # MEASURE AND COMPARE
-    measure()
-
+    # measure()
+    uitests()
 
 if __name__ == "__main__":
     main()
