@@ -72,14 +72,12 @@ class CassandraSource:
 
 
     def avg(self, table_name, column_name, group_by):
-        pass
         sql_query = "SELECT {}, AVG({}) FROM {}.{} GROUP BY {};".format(group_by, column_name, KEYSPACE,table_name, group_by)
         rslt = self.session.execute(sql_query)
         return rslt._current_rows
 
 
     def sum(self, table_name, column_name, group_by):
-        pass
         sql_query = "SELECT {}, SUM({}) FROM {}.{} GROUP BY {};".format(group_by, column_name, KEYSPACE,table_name, group_by)
         rslt = self.session.execute(sql_query)
         return rslt._current_rows
