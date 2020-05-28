@@ -1,8 +1,5 @@
 import argparse
 
-
-# TODO tables/columns in join - figure out !
-
 # TODO ? - implement quitting
 # TODO ? - implement or "are you sure" prompt
 
@@ -35,7 +32,8 @@ class InputData:
         self.possible_sources = ["kafka", "cassandra", "mongoDB", "sqlServer"]
         self.args = args
         self.params = Params()
-        self.parser = argparse.ArgumentParser(description="Compare computing time for operation done in ETL and Push-down modes.")
+        self.parser = argparse.ArgumentParser(
+            description="Compare computing time for operation done in ETL and Push-down modes.")
 
     def parse_arguments(self):
         self.parser.add_argument('-s', '--source', help="Technology to be used.", choices=self.possible_sources)
@@ -44,8 +42,8 @@ class InputData:
                                                            "Please refer to documentation "
                                                            "for more info.", choices=self.possible_operations)
         self.parser.add_argument('-t', '--table', help="Table to be grouped by or search by value. "
-                                                        "\tJoin operation requires two tables."
-                                                        "\tInsert them separated by ';', ex table1;table2")
+                                                       "\tJoin operation requires two tables."
+                                                       "\tInsert them separated by ';', ex table1;table2")
         self.parser.add_argument('-c', '--column', help="Column to be search or aggregated by."
                                                         "\tJoin operation requires two columns."
                                                         "\tInsert them separated by ';', ex col1;col2")
@@ -59,16 +57,15 @@ class InputData:
         if possible_values != "":
             possible_values = "\nPossible values are:\n" + "\n".join(possible_values)
         if missing:
-            return input(("Parameter {} needed" + possible_values+"\n:").format(name))
+            return input(("Parameter {} needed" + possible_values + "\n:").format(name))
         else:
-            return input(("Wrong value for parameter {}" + possible_values+"\n:").format(name))
-
+            return input(("Wrong value for parameter {}" + possible_values + "\n:").format(name))
 
     def get_missing_info_for_source(self):
         while self.params.source == "":
             self.params.source = self.ask_about("source", possible_values=self.possible_sources)
         while self.params.source not in self.possible_sources:
-            self.params.source = self.ask_about("source", missing=False)
+            self.params.source = self.ask_about("source", missing=False, possible_values=self.possible_sources)
         param_name = "database"
         if self.params.source == "cassandra":
             param_name = "keyspace"
@@ -102,14 +99,19 @@ class InputData:
             while self.params.table == "":
                 self.params.table = self.ask_about("tables")
             self.params.table = self.params.table.split(";")
-            while len(self.params.table) != 2 or "" in self.params.table:
-                self.params.table = self.ask_about("tables", msg="You need two tables to do join!")
-
+            while len(self.params.table) != 2:
+                # todo add one table
+                self.params.table = self.ask_about("tables",
+                                                   msg="You need two tables to do join! Enter table names separated by semicolon")
+                self.params.table = self.params.table.split(";")
             while self.params.column == "":
                 self.params.column = self.ask_about("columns")
-            self.params.table = self.params.column.split(";")
-            while len(self.params.column) != 2 or "" in self.params.column:
-                self.params.column = self.ask_about("columns", msg="You need two columns to do join!")
+            self.params.column = self.params.column.split(";")
+            while len(self.params.column) != 2:
+                self.params.column = self.ask_about("columns",
+                                                    msg="You need two columns to do join! Enter column names separated by semicolon")
+                self.params.column = self.params.column.split(";")
+
             while self.params.value == "":
                 self.params.value = self.ask_about("wanted value")
             return 0
