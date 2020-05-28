@@ -8,12 +8,12 @@ Projekt zaliczeniowy na laboratoria przedmiotu Hurtownie danych i przetwarzanie 
 - [X] Cassandra - podstawowe zapytania
 - [X] dokumentacja - uzupełnić
 - [X] SQL Server - podstawowe zapytania
+- [X] Interface
 
-- [ ] Kafka - podstawowe zapytania
-- [ ] Cassandra - join 
-- [ ] Interface
+- [ ] Kafka - podstawowe zapytania (Producent skończony)
+- [ ] Cassandra - join (do przedyskutowania)
+
 - [ ] testy podstawowych zapytań (tego co już mamy)
-
 - [ ] MongoDB - optymalizacja zapytań
 - [ ] Cassandra - optymalizacja zapytań
 - [ ] Kafka - optymalizacja zapytań
