@@ -1,14 +1,8 @@
 import argparse
 
+
 # TODO ? - implement quitting
 # TODO ? - implement or "are you sure" prompt
-
-def test():
-    args = ['--t', 'tab1']
-    input_data = InputData(args)
-    input_data.parse_arguments()
-    input_data.params.print()
-
 
 class Params:
     def __init__(self):
@@ -22,7 +16,7 @@ class Params:
 
     def print(self):
         attrs = vars(self)
-        print("Params object's properties:")
+        print("Params:")
         print('\n'.join("%s: %s" % item for item in attrs.items()))
 
 
@@ -37,24 +31,23 @@ class InputData:
 
     def parse_arguments(self):
         self.parser.add_argument('-s', '--source', help="Technology to be used.", choices=self.possible_sources)
-        self.parser.add_argument('-db', '--database', help="Database, topic or keyspace to be used.")
+        self.parser.add_argument('-db', '--database', help="Database, topic or keyspace to be used. ")
         self.parser.add_argument('-o', '--operation', help="Operation to be compared. "
-                                                           "Please refer to documentation "
+                                                           "Please check the documentation "
                                                            "for more info.", choices=self.possible_operations)
         self.parser.add_argument('-t', '--table', help="Table to be grouped by or search by value. "
-                                                       "\tJoin operation requires two tables."
-                                                       "\tInsert them separated by ';', ex table1;table2")
+                                                       "Join operation requires two tables."
+                                                       "Insert them with semicolon as separator, ex: table1;table2")
         self.parser.add_argument('-c', '--column', help="Column to be search or aggregated by."
-                                                        "\tJoin operation requires two columns."
-                                                        "\tInsert them separated by ';', ex col1;col2")
+                                                        "Join operation requires two columns. "
+                                                        "Insert them with semicolon as separator, ex: col1;col2")
         self.parser.add_argument('-v', '--value', help="Value to be search by or aggregated by.")
         self.parser.parse_args(self.args, namespace=self.params)
-        self.get_missing_info()
 
-    def ask_about(self, name, missing=True, possible_values="", msg=""):
+    def ask_about(self, name, missing=True, possible_values=[], msg=""):
         if msg != "":
             print(msg)
-        if possible_values != "":
+        if len(possible_values)>0:
             possible_values = "\nPossible values are:\n" + "\n".join(possible_values)
         if missing:
             return input(("Parameter {} needed" + possible_values + "\n:").format(name))
