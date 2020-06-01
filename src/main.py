@@ -10,45 +10,63 @@ from src.mongoSource import *
 from src.sqlServerInsert import sqlServer_insert
 from src.sqlServerSource import *
 
+import sys
+from src.userInterface import *
+
 PATH_REC = "../res/bialogard_archh_1/"
 PATH_DEV = "../res/"
 
 
-def measure():
-    # choose database
-    # db = "mongo"
-    # db = "cassandra"
-    db = "sqlServer"
-    if db == "cassandra":
+def get_sources(source_name, db):
+    local_src = None
+    pd_src = None
+    if source_name == "cassandra":
         cluster = Cluster()
         session = cluster.connect()
         session.row_factory = pandas_factory
         session.default_fetch_size = None
         local_src = LocalCassandraSource(session)
         pd_src = CassandraSource(session)
-    elif db == "mongo":
+    elif source_name == "mongoDB":
         client = MongoClient()
         db = client['hd']
         local_src = LocalMongoSource(db)
         pd_src = MongoSource(db)
-    elif db == "sqlServer":
+    elif source_name == "sqlServer":
         cnxn = pyodbc.connect(r'Driver={SQL Server};Server=.\SQLEXPRESS;Database=hd;Trusted_Connection=yes;')
         local_src = LocalSqlServerSource(cnxn)
         pd_src = SqlServerSource(cnxn)
+    elif source_name == "kafka":
+        print("Not implemented")
+        # TODO
+        pass
     else:
         print("database " + db + " not found :(")
-        return
+    return local_src, pd_src
 
+
+def measure(params: Params, local_src, pd_src):
     # compare operations
-    find_by_compare(local_src, pd_src, "record", "deviceId", "5004")
-    # join_compare(local_src, pd_src, "record", "device", "deviceId", "deviceId")
-    max_compare(local_src, pd_src, "record", "energia", "deviceid")
-    min_compare(local_src, pd_src, "record", "energia", "deviceid")
-    avg_compare(local_src, pd_src, "record", "energia", "deviceid")
-    sum_compare(local_src, pd_src, "record", "energia", "deviceid")
+    if params.operation == "find":
+        find_by_compare(local_src, pd_src, params.table, params.column, params.value)
+    elif params.operation == "join":
+        join_compare(local_src, pd_src, params.table[0], params.table[1], params.column[0], params.column[1])
+    elif params.operation == "max":
+        max_compare(local_src, pd_src, params.table, params.column, params.value)
+    elif params.operation == "min":
+        min_compare(local_src, pd_src, params.table, params.column, params.value)
+    elif params.operation == "avg":
+        avg_compare(local_src, pd_src, params.table, params.column, params.value)
+    elif params.operation == "sum":
+        sum_compare(local_src, pd_src, params.table, params.column, params.value)
 
 
-    print("\n\nDone")
+def show_ui(args):
+    input_data = InputData(args)
+    input_data.parse_arguments()
+    input_data.get_missing_info()
+    input_data.params.print()
+    return input_data.params
 
 
 def main():
@@ -56,8 +74,21 @@ def main():
     # cassandra_insert(PATH_REC, PATH_DEV)
     # mongoInsert(PATH_REC, PATH_DEV)
     # sqlServer_insert(PATH_REC, PATH_DEV)
+
+    # UI
+    # params = show_ui(sys.argv[1:]) #main arguments
+    # example = "-t record -c energia -o max -v 5005 -db hd_keyspace -s cassandra"
+    # example = "-t record -c energia -o max -v 5005 -db hd_keyspace"
+    example = ""
+    example = example.split()
+    params = show_ui(example)
+
+    # CONNECT
+    #local_src, pd_src = get_sources(params.source, params.database)
+
     # MEASURE AND COMPARE
-    measure()
+    #if local_src is not None and pd_src is not None:
+    #    measure(params, local_src, pd_src)
 
 
 if __name__ == "__main__":
