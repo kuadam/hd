@@ -77,17 +77,18 @@ def main():
 
     # UI
     # params = show_ui(sys.argv[1:]) #main arguments
-    # example = "-t record -c energia -o max -v deviceid -db hd_keyspace -s cassandra"
-    example = "-t record -c energia -o max -v deviceid -db hd_keyspace"
+    # example = "-t record -c energia -o max -v 5005 -db hd_keyspace -s cassandra"
+    # example = "-t record -c energia -o max -v 5005 -db hd_keyspace"
+    example = ""
     example = example.split()
     params = show_ui(example)
 
     # CONNECT
-    local_src, pd_src = get_sources(params.source, params.database)
+    #local_src, pd_src = get_sources(params.source, params.database)
 
     # MEASURE AND COMPARE
-    if local_src is not None and pd_src is not None:
-        measure(params, local_src, pd_src)
+    #if local_src is not None and pd_src is not None:
+    #    measure(params, local_src, pd_src)
 
 
 if __name__ == "__main__":

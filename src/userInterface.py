@@ -1,12 +1,11 @@
 import argparse
 
 
-# TODO ? - implement quitting
-# TODO ? - implement or "are you sure" prompt
+# TODO: implement quitting
+# TODO: implement or "are you sure" prompt
 
 class Params:
     def __init__(self):
-        self.params = []  # list of parameters
         self.source = ""  # which technology
         self.database = ""  # which database
         self.operation = ""
@@ -44,11 +43,17 @@ class InputData:
         self.parser.add_argument('-v', '--value', help="Value to be search by or aggregated by.")
         self.parser.parse_args(self.args, namespace=self.params)
 
-    def ask_about(self, name, missing=True, possible_values=[], msg=""):
-        if msg != "":
+    # TODO(DONE): transformed into @staticmethod, default values to None otherwise error concerning parsing list to str
+    @staticmethod
+    def ask_about(name, missing=True, possible_values=None, msg=None):
+        if msg is not None:
             print(msg)
-        if len(possible_values)>0:
+
+        if possible_values is None:
+            possible_values = ""
+        else:
             possible_values = "\nPossible values are:\n" + "\n".join(possible_values)
+
         if missing:
             return input(("Parameter {} needed" + possible_values + "\n:").format(name))
         else:
@@ -66,6 +71,14 @@ class InputData:
             param_name = "topic"
         while self.params.database == "":
             self.params.database = self.ask_about(param_name)
+
+    # FIXME: case of user passing parameters not required for chosen operation --> inform that they will be ignored
+    #                                                                             and clear values in class instance
+    #  specific problems below:
+    #  op find --> check if passed value is of correct type ex. deviceid must be int
+    #  op max, min, avg, sum --> aggregation value should be empty str & lacking name of column to apply chosen op on
+    #  op join --> aggregation value should be empty str & case of passing tab1; the second table is empty str, same
+    #              problem with columns
 
     def get_missing_info_for_operation(self):
         while self.params.operation == "":
@@ -93,16 +106,16 @@ class InputData:
                 self.params.table = self.ask_about("tables")
             self.params.table = self.params.table.split(";")
             while len(self.params.table) != 2:
-                # todo add one table
-                self.params.table = self.ask_about("tables",
-                                                   msg="You need two tables to do join! Enter table names separated by semicolon")
+                # TODO: add one table
+                self.params.table = self.ask_about("tables", msg="You need two tables to do join! "
+                                                                 "Enter table names separated by semicolon")
                 self.params.table = self.params.table.split(";")
             while self.params.column == "":
                 self.params.column = self.ask_about("columns")
             self.params.column = self.params.column.split(";")
             while len(self.params.column) != 2:
-                self.params.column = self.ask_about("columns",
-                                                    msg="You need two columns to do join! Enter column names separated by semicolon")
+                self.params.column = self.ask_about("columns", msg="You need two columns to do join! "
+                                                                   "Enter column names separated by semicolon")
                 self.params.column = self.params.column.split(";")
 
             while self.params.value == "":
