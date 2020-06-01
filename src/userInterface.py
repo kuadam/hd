@@ -117,9 +117,6 @@ class InputData:
                 self.params.column = self.ask_about("columns", msg="You need two columns to do join! "
                                                                    "Enter column names separated by semicolon")
                 self.params.column = self.params.column.split(";")
-
-            while self.params.value == "":
-                self.params.value = self.ask_about("wanted value")
             return 0
 
     def get_missing_info(self):
