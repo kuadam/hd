@@ -1,8 +1,8 @@
 import argparse
 
-
 # TODO: implement quitting
 # TODO: implement or "are you sure" prompt
+# TODO: inform that unneeded parameters will be ignored and clear values in class instance
 
 class Params:
     def __init__(self):
@@ -12,7 +12,7 @@ class Params:
         self.table = ""
         self.column = ""
         self.value = ""
-        self.aggregated=""
+        self.aggregated = ""
 
     def print(self):
         attrs = vars(self)
@@ -46,17 +46,14 @@ class InputData:
 
         self.parser.parse_args(self.args, namespace=self.params)
 
-    # TODO(DONE): transformed into @staticmethod, default values to None otherwise error concerning parsing list to str
     @staticmethod
     def ask_about(name, missing=True, possible_values=None, msg=None):
         if msg is not None:
             print(msg)
-
         if possible_values is None:
             possible_values = ""
         else:
             possible_values = "\nPossible values are:\n" + "\n".join(possible_values)
-
         if missing:
             return input(("Parameter {} needed" + possible_values + "\n:").format(name))
         else:
@@ -75,11 +72,10 @@ class InputData:
         while self.params.database == "":
             self.params.database = self.ask_about(param_name)
 
-    # FIXME: case of user passing parameters not required for chosen operation --> inform that they will be ignored
-    #                                                                             and clear values in class instance
-    #  specific problems below:
-    #  op join --> aggregation value should be empty str & case of passing tab1; the second table is empty str, same
-    #              problem with columns
+    # check if array contains empty string or string containing only whitespaces
+    @staticmethod
+    def empty_values(array):
+        return True in [(string.isspace() or not string) for string in array]
 
     def get_missing_info_for_operation(self):
         while self.params.operation == "":
@@ -106,7 +102,7 @@ class InputData:
             while self.params.table == "":
                 self.params.table = self.ask_about("tables")
             self.params.table = self.params.table.split(";")
-            while len(self.params.table) != 2:
+            while len(self.params.table) != 2 or self.empty_values(self.params.table):  # check if not empty
                 # TODO: add one table
                 self.params.table = self.ask_about("tables", msg="You need two tables to do join! "
                                                                  "Enter table names separated by semicolon")
@@ -114,7 +110,7 @@ class InputData:
             while self.params.column == "":
                 self.params.column = self.ask_about("columns")
             self.params.column = self.params.column.split(";")
-            while len(self.params.column) != 2:
+            while len(self.params.column) != 2 or self.empty_values(self.params.column):  # check if not empty
                 self.params.column = self.ask_about("columns", msg="You need two columns to do join! "
                                                                    "Enter column names separated by semicolon")
                 self.params.column = self.params.column.split(";")
