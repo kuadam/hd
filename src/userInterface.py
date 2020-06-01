@@ -12,6 +12,7 @@ class Params:
         self.table = ""
         self.column = ""
         self.value = ""
+        self.aggregated=""
 
     def print(self):
         attrs = vars(self)
@@ -40,7 +41,9 @@ class InputData:
         self.parser.add_argument('-c', '--column', help="Column to be search or aggregated by."
                                                         "Join operation requires two columns. "
                                                         "Insert them with semicolon as separator, ex: col1;col2")
-        self.parser.add_argument('-v', '--value', help="Value to be search by or aggregated by.")
+        self.parser.add_argument('-v', '--value', help="Value to search by.")
+        self.parser.add_argument('-a', '--aggregated', help="Value to aggregate by.")
+
         self.parser.parse_args(self.args, namespace=self.params)
 
     # TODO(DONE): transformed into @staticmethod, default values to None otherwise error concerning parsing list to str
@@ -75,8 +78,6 @@ class InputData:
     # FIXME: case of user passing parameters not required for chosen operation --> inform that they will be ignored
     #                                                                             and clear values in class instance
     #  specific problems below:
-    #  op find --> check if passed value is of correct type ex. deviceid must be int
-    #  op max, min, avg, sum --> aggregation value should be empty str & lacking name of column to apply chosen op on
     #  op join --> aggregation value should be empty str & case of passing tab1; the second table is empty str, same
     #              problem with columns
 
@@ -89,9 +90,9 @@ class InputData:
             while self.params.table == "":
                 self.params.table = self.ask_about("table")
             while self.params.column == "":
-                self.params.column = self.ask_about("group_by column")
-            while self.params.value == "":
-                self.params.value = self.ask_about("aggregated value")
+                self.params.column = self.ask_about("column to group by")
+            while self.params.aggregated == "":
+                self.params.aggregated = self.ask_about("aggregated value")
             return 0
         elif self.params.operation == "find":
             while self.params.table == "":
