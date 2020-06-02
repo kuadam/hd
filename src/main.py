@@ -2,6 +2,7 @@ import pyodbc
 from cassandra.cluster import Cluster
 from pymongo import MongoClient
 from src.cassandraInsert import cassandra_insert
+from src.kafkaSource import LocalKafkaSource
 
 from src.measure import *
 from src.mongoInsert import mongoInsert
@@ -37,9 +38,9 @@ def get_sources(source_name, db):
         local_src = LocalSqlServerSource(cnxn)
         pd_src = SqlServerSource(cnxn)
     elif source_name == "kafka":
-        print("Not implemented")
-        # TODO
-        pass
+        local_src = LocalKafkaSource(db)
+        # TODO: push-down
+        pd_src = "nyny"
     else:
         print("database " + db + " not found :(")
     return local_src, pd_src
@@ -74,6 +75,7 @@ def main():
     # cassandra_insert(PATH_REC, PATH_DEV)
     # mongoInsert(PATH_REC, PATH_DEV)
     # sqlServer_insert(PATH_REC, PATH_DEV)
+    # run KafkaProducer
 
     # UI
     # params = show_ui(sys.argv[1:]) #main arguments
@@ -81,14 +83,26 @@ def main():
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace"
     example = ""
     example = example.split()
-    params = show_ui(example)
+    # params = show_ui(example)
 
     # CONNECT
-    #local_src, pd_src = get_sources(params.source, params.database)
+    # local_src, pd_src = get_sources(params.source, params.database)
 
     # MEASURE AND COMPARE
-    #if local_src is not None and pd_src is not None:
+    # if local_src is not None and pd_src is not None:
     #    measure(params, local_src, pd_src)
+
+    local_src = LocalKafkaSource('kafka-source')
+
+    # TESTS
+    # print(local_src.find_by('bialogard_archh_1', 'deviceid', 5004))
+    # print(local_src.find_by('urzadzenia_rozliczeniowe_opis.csv', 'deviceId', 5004))
+    # print(local_src.join_cross('bialogard_archh_1', 'urzadzenia_rozliczeniowe_opis.csv'))
+    # print(local_src.join('bialogard_archh_1', 'urzadzenia_rozliczeniowe_opis.csv', 'deviceid', 'deviceId'))
+    # print(local_src.max('bialogard_archh_1', 'v_wiatr', 'deviceid'))
+    # print(local_src.min('bialogard_archh_1', 'v_wiatr', 'deviceid'))
+    # print(local_src.avg('bialogard_archh_1', 'v_wiatr', 'deviceid'))
+    print(local_src.sum('bialogard_archh_1', 'v_wiatr', 'deviceid'))
 
 
 if __name__ == "__main__":

@@ -5,9 +5,12 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -19,8 +22,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         // paths to files
-        String devicesFile = "./../res/urzadzenia_rozliczeniowe_opis.csv";
-        String recordsDir = "./../res/bialogard_archh_1";
+        Path devicesFile = Paths.get("./../res/urzadzenia_rozliczeniowe_opis.csv");
+        Path recordsDir = Paths.get("./../res/bialogard_archh_1");
 
         // kafka topic name
         String topic = "kafka-source";
@@ -40,32 +43,8 @@ public class Main {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        // send info about devices
-        List<Device> devicesLines = new BufferedReader(new FileReader(devicesFile))
-                .lines()
-                .map(line -> new Device(
-                        line.split(";")[0],
-                        line.split(";")[1],
-                        line.split(";")[2],
-                        line.split(";")[4],
-                        line.split(";")[9],
-                        line.split(";")[14]
-                        )
-                )
-                .collect(Collectors.toList());
-
-        devicesLines.forEach(line -> {
-            JsonNode jsonNode = objectMapper.valueToTree(line);
-            producer.send(new ProducerRecord<String, JsonNode>(topic, jsonNode));
-            //System.out.println(jsonNode);
-        });
-
-        producer.send(new ProducerRecord<String, JsonNode>(topic, objectMapper.valueToTree("EOF")));
-        //System.out.println("EOF");
-
-
         // send records
-        final File dir = new File(recordsDir);
+        final File dir = new File(recordsDir.toString());
         File[] listOfFiles = dir.listFiles();
         String[] listOfPaths = Arrays.stream(listOfFiles)
                 .map(file -> file.getAbsolutePath())
@@ -74,8 +53,10 @@ public class Main {
 
         for(final String fileName : listOfPaths) {
             String deviceId = fileName.substring(fileName.length()-8, fileName.length()-4);
+            String tableType1 = recordsDir.getFileName().toString();
 
-            List<Record> RecordsLines = new BufferedReader(new FileReader(fileName))
+            List<Record> RecordsLines = new BufferedReader(
+                    new InputStreamReader(new FileInputStream(fileName), "windows-1250"))
                     .lines()
                     .skip(3)
                     .filter(line -> !line.isEmpty())
@@ -96,6 +77,9 @@ public class Main {
                     })
                     .collect(Collectors.toList());
 
+            producer.send(new ProducerRecord<String, JsonNode>(topic, objectMapper.valueToTree(tableType1)));
+            //System.out.println(tableType1);
+
             RecordsLines.forEach(line -> {
                 JsonNode jsonNode = objectMapper.valueToTree(line);
                 producer.send(new ProducerRecord<String, JsonNode>(topic, jsonNode));
@@ -105,6 +89,37 @@ public class Main {
             producer.send(new ProducerRecord<String, JsonNode>(topic, objectMapper.valueToTree("EOF")));
             //System.out.println("EOF");
         }
+
+        // send info about devices
+        String tableType2 = devicesFile.getFileName().toString();
+
+        List<Device> devicesLines = new BufferedReader(
+                new InputStreamReader(new FileInputStream(devicesFile.toString()), "windows-1250"))
+                .lines()
+                .map(line -> {
+                    String[] splitted = line.split(";");
+
+                    return new Device(
+                            splitted[0],
+                            splitted[1],
+                            splitted[2],
+                            splitted[4],
+                            splitted[9],
+                            splitted[14]);
+                })
+                .collect(Collectors.toList());
+
+        producer.send(new ProducerRecord<String, JsonNode>(topic, objectMapper.valueToTree(tableType2)));
+        //System.out.println(tableType2);
+
+        devicesLines.forEach(line -> {
+            JsonNode jsonNode = objectMapper.valueToTree(line);
+            producer.send(new ProducerRecord<String, JsonNode>(topic, jsonNode));
+            //System.out.println(jsonNode);
+        });
+
+        producer.send(new ProducerRecord<String, JsonNode>(topic, objectMapper.valueToTree("EOF")));
+        //System.out.println("EOF");
 
         producer.close();
     }

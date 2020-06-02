@@ -4,6 +4,7 @@ import argparse
 # TODO: implement or "are you sure" prompt
 # TODO: inform that unneeded parameters will be ignored and clear values in class instance
 
+
 class Params:
     def __init__(self):
         self.source = ""  # which technology

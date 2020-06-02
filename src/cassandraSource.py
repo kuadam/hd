@@ -11,7 +11,7 @@ def pandas_factory(colnames, rows):
 
 class LocalCassandraSource:
     def __init__(self, session):
-        self.session=session
+        self.session = session
 
     def find_by(self, table_name, column_name, value):
         data_frame = self.session.execute("SELECT * FROM {}.{};".format(KEYSPACE, table_name))._current_rows
