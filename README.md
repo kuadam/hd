@@ -9,7 +9,8 @@ Projekt zaliczeniowy na laboratoria przedmiotu Hurtownie danych i przetwarzanie 
 - [X] dokumentacja - uzupełnić
 - [X] SQL Server - podstawowe zapytania
 
-- [ ] Kafka - podstawowe zapytania
+- [X] Kafka - podstawowe zapytania (lokalnie)
+- [ ] Kafka - podstawowe zapytania (w źródle - biblioteka Faust)
 - [ ] Cassandra - join 
 - [ ] Interface
 - [ ] testy podstawowych zapytań (tego co już mamy)
