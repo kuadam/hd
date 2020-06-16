@@ -4,11 +4,20 @@ import pandas as pd
 from os import listdir
 from os.path import isfile, join
 
+
 def mongoInsert(PATH_REC, PATH_DEV):
     client = MongoClient()
     db = client['hd']
     insert(PATH_REC, PATH_DEV, db)
 
+
+def get_time(row):
+    return row["Data_czas"].split()[1]
+
+
+def get_date(row):
+    l_date = row["Data_czas"].split()[0]
+    return l_date.replace(".", "-")
 
 
 def insert(destdir, resdir, db):
@@ -22,7 +31,9 @@ def insert(destdir, resdir, db):
         df.insert(loc=0, column='deviceid', value=file[-8:-4])
         df.rename(columns=lambda x: x.replace('.', ''), inplace=True, )
         df.rename(columns=lambda x: x.replace(' ', '_'), inplace=True)
-
+        df['czas'] = df.apply(lambda x: get_time(x), axis=1)
+        df['Data_czas'] = df.apply(lambda x: get_date(x), axis=1)
+        df.rename(inplace=True, columns={"Data_czas": "data"})
         records = db['record']
 
         data = df.to_dict("records")
@@ -31,27 +42,15 @@ def insert(destdir, resdir, db):
 
     devices = db['device']
     items = []
-    with open(resdir+'urzadzenia_rozliczeniowe_opis.csv', newline='\n') as csvfile:
+    with open(resdir + 'urzadzenia_rozliczeniowe_opis.csv', newline='\n') as csvfile:
         reader = csv.reader(csvfile, delimiter=";")
         for row in reader:
             item = {"deviceid": row[0],
                     "code": row[1],
                     "name": row[2],
-                    "a": row[3],
                     "type": row[4],
-                    "r": row[5],
-                    "val1": row[6],
-                    "val2": row[7],
-                    "param": row[8],
                     "street": row[9],
-                    "cityType": row[10],
-                    "c": row[11],
-                    "d": row[12],
-                    "city": row[13],
                     "location": row[14],
-                    "date": row[15],
-                    "e": row[16],
-                    "f": row[17],
                     }
             items.append(item)
 
