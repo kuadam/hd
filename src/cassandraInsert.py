@@ -37,7 +37,8 @@ def create(session):
         CREATE TABLE IF NOT EXISTS %s (
             deviceid      bigint,
             nr_odczytu    bigint,
-            data_czas     text,
+            data          date,
+            czas          time,
             energia       float,
             t_zewn        float,
             v_wiatr       float,
@@ -46,7 +47,7 @@ def create(session):
             dlug_dnia     float,
             typ_dnia      text,
             pora_roku     text,
-            PRIMARY KEY (deviceid,nr_odczytu)
+            PRIMARY KEY ((data), nr_odczytu)
         )
         """ % TABLE1)
 
@@ -63,14 +64,18 @@ def create(session):
         )
         """ % TABLE2)
 
+def parseTimestamp(timestamp):
+    l_date, l_time = timestamp.split()
+    l_date = l_date.replace(".", "-")
+    return l_date, l_time
 
 def insert(path_rec, path_dec, session):
     # RECORDS
     print("Inserting records...")
 
     prepared = session.prepare("""
-        INSERT INTO %s (deviceid,nr_odczytu,data_czas,energia,t_zewn,v_wiatr,wilg,zachm,dlug_dnia,typ_dnia,pora_roku)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO %s (deviceid,nr_odczytu,data, czas,energia,t_zewn,v_wiatr,wilg,zachm,dlug_dnia,typ_dnia,pora_roku)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """ % TABLE1)
     files = [f for f in listdir(path_rec) if isfile(join(path_rec, f))]
     f_len = len(files)
@@ -89,10 +94,12 @@ def insert(path_rec, path_dec, session):
         records.replace({',': '.'}, regex=True, inplace=True)
 
         for row in records.itertuples(index=True, name='Pandas'):  # try batch to optimize
+            row_date, row_time = parseTimestamp(getattr(row, "Data_czas"))
             session.execute(prepared, (
                 int(getattr(row, "deviceid")),
                 int(getattr(row, "Nr_odczytu")),
-                getattr(row, "Data_czas"),
+                row_date,
+                row_time,
                 float(getattr(row, "Energia")),
                 float(getattr(row, "T_zewn")),
                 float(getattr(row, "V_wiatr")),
@@ -105,7 +112,6 @@ def insert(path_rec, path_dec, session):
         count += 1
     print('\r\tProgress: [%d%%]' % (100 * count / f_len), end="")
     print()
-
     # DEVICES
     print("Inserting devices...")
     filename = path_dec + "urzadzenia_rozliczeniowe_opis.csv"

@@ -71,9 +71,10 @@ def show_ui(args):
 
 def main():
     # CREATE DATABASE AND INSERT DATA
-    # cassandra_insert(PATH_REC, PATH_DEV)
+    cassandra_insert(PATH_REC, PATH_DEV)
     # mongoInsert(PATH_REC, PATH_DEV)
     # sqlServer_insert(PATH_REC, PATH_DEV)
+    return
 
     # UI
     # params = show_ui(sys.argv[1:]) #main arguments
