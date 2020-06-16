@@ -25,8 +25,8 @@ def get_sources(source_name, db):
         session = cluster.connect()
         session.row_factory = pandas_factory
         session.default_fetch_size = None
-        local_src = LocalCassandraSource(session)
-        pd_src = CassandraSource(session)
+        local_src = LocalCassandraSource(session, db)
+        pd_src = CassandraSource(session, db)
     elif source_name == "mongoDB":
         client = MongoClient()
         db = client['hd']
@@ -52,13 +52,13 @@ def measure(params: Params, local_src, pd_src):
     elif params.operation == "join":
         join_compare(local_src, pd_src, params.table[0], params.table[1], params.column[0], params.column[1])
     elif params.operation == "max":
-        max_compare(local_src, pd_src, params.table, params.column, params.value)
+        max_compare(local_src, pd_src, params.table, params.aggregated, params.column)
     elif params.operation == "min":
-        min_compare(local_src, pd_src, params.table, params.column, params.value)
+        min_compare(local_src, pd_src, params.table, params.aggregated, params.column)
     elif params.operation == "avg":
-        avg_compare(local_src, pd_src, params.table, params.column, params.value)
+        avg_compare(local_src, pd_src, params.table, params.aggregated, params.column)
     elif params.operation == "sum":
-        sum_compare(local_src, pd_src, params.table, params.column, params.value)
+        sum_compare(local_src, pd_src, params.table, params.aggregated, params.column)
 
 
 def show_ui(args):
@@ -77,8 +77,9 @@ def main():
 
     # UI
     # params = show_ui(sys.argv[1:]) #main arguments
-    # example = "-t record -c energia -o max -v deviceid -db hd_keyspace -s cassandra"
-    example = "-t record -c energia -o max -v deviceid -db hd_keyspace"
+    # example = "-t record -c energia -o max -v 5005 -db hd_keyspace -s cassandra"
+    # example = "-t record -c energia -o max -v 5005 -db hd_keyspace"
+    example = "-s cassandra -db hd_keyspace -t tab1 -o avg -c deviceid -a energia"
     example = example.split()
     params = show_ui(example)
 

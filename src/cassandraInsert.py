@@ -46,7 +46,7 @@ def create(session):
             dlug_dnia     float,
             typ_dnia      text,
             pora_roku     text,
-            PRIMARY KEY (deviceid,nr_odczytu)
+            PRIMARY KEY ((deviceid), nr_odczytu)
         )
         """ % TABLE1)
 
@@ -79,7 +79,6 @@ def insert(path_rec, path_dec, session):
     for f in files:
         print('\r\tProgress: [%d%%]' % (100 * count / f_len), end="")
         filename = path_rec + "/" + f
-
 
         records = pd.read_csv(filename, sep=";", encoding="ISO-8859-1", skiprows=[2],
                               usecols=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], skip_blank_lines=True)

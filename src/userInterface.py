@@ -1,18 +1,18 @@
 import argparse
 
-
-# TODO ? - implement quitting
-# TODO ? - implement or "are you sure" prompt
+# TODO: implement quitting
+# TODO: implement or "are you sure" prompt
+# TODO: inform that unneeded parameters will be ignored and clear values in class instance
 
 class Params:
     def __init__(self):
-        self.params = []  # list of parameters
         self.source = ""  # which technology
         self.database = ""  # which database
         self.operation = ""
         self.table = ""
         self.column = ""
         self.value = ""
+        self.aggregated = ""
 
     def print(self):
         attrs = vars(self)
@@ -38,16 +38,21 @@ class InputData:
         self.parser.add_argument('-t', '--table', help="Table to be grouped by or search by value. "
                                                        "Join operation requires two tables."
                                                        "Insert them with semicolon as separator, ex: table1;table2")
-        self.parser.add_argument('-c', '--column', help="Column to be search or aggregated by."
+        self.parser.add_argument('-c', '--column', help="Column to be search or grouped by."
                                                         "Join operation requires two columns. "
                                                         "Insert them with semicolon as separator, ex: col1;col2")
-        self.parser.add_argument('-v', '--value', help="Value to be search by or aggregated by.")
+        self.parser.add_argument('-v', '--value', help="Value to search by.")
+        self.parser.add_argument('-a', '--aggregated', help="Value to aggregate by.")
+
         self.parser.parse_args(self.args, namespace=self.params)
 
-    def ask_about(self, name, missing=True, possible_values=[], msg=""):
-        if msg != "":
+    @staticmethod
+    def ask_about(name, missing=True, possible_values=None, msg=None):
+        if msg is not None:
             print(msg)
-        if len(possible_values)>0:
+        if possible_values is None:
+            possible_values = ""
+        else:
             possible_values = "\nPossible values are:\n" + "\n".join(possible_values)
         if missing:
             return input(("Parameter {} needed" + possible_values + "\n:").format(name))
@@ -67,6 +72,11 @@ class InputData:
         while self.params.database == "":
             self.params.database = self.ask_about(param_name)
 
+    # check if array contains empty string or string containing only whitespaces
+    @staticmethod
+    def empty_values(array):
+        return True in [(string.isspace() or not string) for string in array]
+
     def get_missing_info_for_operation(self):
         while self.params.operation == "":
             self.params.operation = self.ask_about("operation", possible_values=self.possible_operations)
@@ -76,9 +86,9 @@ class InputData:
             while self.params.table == "":
                 self.params.table = self.ask_about("table")
             while self.params.column == "":
-                self.params.column = self.ask_about("group_by column")
-            while self.params.value == "":
-                self.params.value = self.ask_about("aggregated value")
+                self.params.column = self.ask_about("column to group by")
+            while self.params.aggregated == "":
+                self.params.aggregated = self.ask_about("aggregated value")
             return 0
         elif self.params.operation == "find":
             while self.params.table == "":
@@ -92,21 +102,18 @@ class InputData:
             while self.params.table == "":
                 self.params.table = self.ask_about("tables")
             self.params.table = self.params.table.split(";")
-            while len(self.params.table) != 2:
-                # todo add one table
-                self.params.table = self.ask_about("tables",
-                                                   msg="You need two tables to do join! Enter table names separated by semicolon")
+            while len(self.params.table) != 2 or self.empty_values(self.params.table):  # check if not empty
+                # TODO: add one table
+                self.params.table = self.ask_about("tables", msg="You need two tables to do join! "
+                                                                 "Enter table names separated by semicolon")
                 self.params.table = self.params.table.split(";")
             while self.params.column == "":
                 self.params.column = self.ask_about("columns")
             self.params.column = self.params.column.split(";")
-            while len(self.params.column) != 2:
-                self.params.column = self.ask_about("columns",
-                                                    msg="You need two columns to do join! Enter column names separated by semicolon")
+            while len(self.params.column) != 2 or self.empty_values(self.params.column):  # check if not empty
+                self.params.column = self.ask_about("columns", msg="You need two columns to do join! "
+                                                                   "Enter column names separated by semicolon")
                 self.params.column = self.params.column.split(";")
-
-            while self.params.value == "":
-                self.params.value = self.ask_about("wanted value")
             return 0
 
     def get_missing_info(self):
