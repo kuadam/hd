@@ -38,7 +38,7 @@ class InputData:
         self.parser.add_argument('-t', '--table', help="Table to be grouped by or search by value. "
                                                        "Join operation requires two tables."
                                                        "Insert them with semicolon as separator, ex: table1;table2")
-        self.parser.add_argument('-c', '--column', help="Column to be search or aggregated by."
+        self.parser.add_argument('-c', '--column', help="Column to be search or grouped by."
                                                         "Join operation requires two columns. "
                                                         "Insert them with semicolon as separator, ex: col1;col2")
         self.parser.add_argument('-v', '--value', help="Value to search by.")
