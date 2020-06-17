@@ -25,9 +25,6 @@ public class Main {
         Path devicesFile = Paths.get("./../res/urzadzenia_rozliczeniowe_opis.csv");
         Path recordsDir = Paths.get("./../res/bialogard_archh_1");
 
-        // kafka topic name
-        String topic = "kafka-source";
-
         // producer configuration
         Properties props = new Properties();
         props.put("bootstrap.servers","localhost:9092");
@@ -38,6 +35,10 @@ public class Main {
         props.put("buffer.memory", 33554432);
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer","org.apache.kafka.connect.json.JsonSerializer");
+
+        // kafka topics
+        String topic_records = "kafka-source-records";
+        String topic_devices = "kafka-source-devices";
 
         KafkaProducer<String, JsonNode> producer = new KafkaProducer<>(props);
 
@@ -53,7 +54,6 @@ public class Main {
 
         for(final String fileName : listOfPaths) {
             String deviceId = fileName.substring(fileName.length()-8, fileName.length()-4);
-            String tableType1 = recordsDir.getFileName().toString();
 
             List<Record> RecordsLines = new BufferedReader(
                     new InputStreamReader(new FileInputStream(fileName), "windows-1250"))
@@ -62,36 +62,26 @@ public class Main {
                     .filter(line -> !line.isEmpty())
                     .map(line -> {
                         StringTokenizer st = new StringTokenizer(line,";");
-                        return new Record(
-                                deviceId,
-                                st.nextToken(),
-                                st.nextToken(),
-                                st.nextToken(),
-                                st.nextToken(),
-                                st.nextToken(),
-                                st.nextToken(),
-                                st.nextToken(),
-                                st.nextToken(),
-                                st.nextToken(),
-                                st.nextToken());
+                        return new Record(deviceId,
+                                          st.nextToken(),
+                                          st.nextToken(),
+                                          st.nextToken(),
+                                          st.nextToken(),
+                                          st.nextToken(),
+                                          st.nextToken(),
+                                          st.nextToken(),
+                                          st.nextToken(),
+                                          st.nextToken(),
+                                          st.nextToken());
                     })
                     .collect(Collectors.toList());
 
-            producer.send(new ProducerRecord<String, JsonNode>(topic, objectMapper.valueToTree(tableType1)));
-            //System.out.println(tableType1);
-
             RecordsLines.forEach(line -> {
                 JsonNode jsonNode = objectMapper.valueToTree(line);
-                producer.send(new ProducerRecord<String, JsonNode>(topic, jsonNode));
+                producer.send(new ProducerRecord<String, JsonNode>(topic_records, jsonNode));
                 //System.out.println(jsonNode);
             });
-
-            producer.send(new ProducerRecord<String, JsonNode>(topic, objectMapper.valueToTree("EOF")));
-            //System.out.println("EOF");
         }
-
-        // send info about devices
-        String tableType2 = devicesFile.getFileName().toString();
 
         List<Device> devicesLines = new BufferedReader(
                 new InputStreamReader(new FileInputStream(devicesFile.toString()), "windows-1250"))
@@ -99,27 +89,20 @@ public class Main {
                 .map(line -> {
                     String[] splitted = line.split(";");
 
-                    return new Device(
-                            splitted[0],
-                            splitted[1],
-                            splitted[2],
-                            splitted[4],
-                            splitted[9],
-                            splitted[14]);
+                    return new Device(splitted[0],
+                                      splitted[1],
+                                      splitted[2],
+                                      splitted[4],
+                                      splitted[9],
+                                      splitted[14]);
                 })
                 .collect(Collectors.toList());
 
-        producer.send(new ProducerRecord<String, JsonNode>(topic, objectMapper.valueToTree(tableType2)));
-        //System.out.println(tableType2);
-
         devicesLines.forEach(line -> {
             JsonNode jsonNode = objectMapper.valueToTree(line);
-            producer.send(new ProducerRecord<String, JsonNode>(topic, jsonNode));
+            producer.send(new ProducerRecord<String, JsonNode>(topic_devices, jsonNode));
             //System.out.println(jsonNode);
         });
-
-        producer.send(new ProducerRecord<String, JsonNode>(topic, objectMapper.valueToTree("EOF")));
-        //System.out.println("EOF");
 
         producer.close();
     }

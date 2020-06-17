@@ -2,7 +2,7 @@ import pyodbc
 from cassandra.cluster import Cluster
 from pymongo import MongoClient
 from src.cassandraInsert import cassandra_insert
-from src.kafkaSource import LocalKafkaSource
+from src.kafkaSource import *
 
 from src.measure import *
 from src.mongoInsert import mongoInsert
@@ -13,9 +13,7 @@ from src.sqlServerSource import *
 
 import sys
 from src.userInterface import *
-
-PATH_REC = "../res/bialogard_archh_1/"
-PATH_DEV = "../res/"
+from src.paths import *
 
 
 def get_sources(source_name, db):
@@ -38,9 +36,10 @@ def get_sources(source_name, db):
         local_src = LocalSqlServerSource(cnxn)
         pd_src = SqlServerSource(cnxn)
     elif source_name == "kafka":
-        local_src = LocalKafkaSource(db)
-        # TODO: push-down
-        pd_src = "nyny"
+        print('nyny')
+        # parameters for constructors shown below
+        # local_src = LocalKafkaSource(topic_1, topic_2=None)
+        # pd_src = KafkaSource(topic_1, schema_1, topic_2=None, schema_2=None)
     else:
         print("database " + db + " not found :(")
     return local_src, pd_src
@@ -92,17 +91,33 @@ def main():
     # if local_src is not None and pd_src is not None:
     #    measure(params, local_src, pd_src)
 
-    local_src = LocalKafkaSource('kafka-source')
+    # Examples for Kafka class instances initialization
 
-    # TESTS
-    # print(local_src.find_by('bialogard_archh_1', 'deviceid', 5004))
-    # print(local_src.find_by('urzadzenia_rozliczeniowe_opis.csv', 'deviceId', 5004))
-    # print(local_src.join_cross('bialogard_archh_1', 'urzadzenia_rozliczeniowe_opis.csv'))
-    # print(local_src.join('bialogard_archh_1', 'urzadzenia_rozliczeniowe_opis.csv', 'deviceid', 'deviceId'))
-    # print(local_src.max('bialogard_archh_1', 'v_wiatr', 'deviceid'))
-    # print(local_src.min('bialogard_archh_1', 'v_wiatr', 'deviceid'))
-    # print(local_src.avg('bialogard_archh_1', 'v_wiatr', 'deviceid'))
-    print(local_src.sum('bialogard_archh_1', 'v_wiatr', 'deviceid'))
+    local_src = LocalKafkaSource('kafka-source-records')
+    # local_src = LocalKafkaSource('kafka-source-devices')
+    # local_src = LocalKafkaSource('kafka-source-records', 'kafka-source-devices')
+
+    # pd_src = KafkaSource('kafka-source-records', 'record_schema.json')
+    # pd_src = KafkaSource('kafka-source-devices', 'device_schema.json')
+    # pd_src = KafkaSource('kafka-source-records', 'record_schema.json', 'kafka-source-devices', 'device_schema.json')
+
+    # Kafka TESTS
+
+    print(local_src.find_by('deviceid', 5005, 0.5))
+    # print(local_src.find_by('deviceId', 5024, 0.16))
+    # print(local_src.join('deviceid', 'deviceId'))
+    # print(local_src.max('v_wiatr', 'deviceid'))
+    # print(local_src.min('v_wiatr', 'deviceid'))
+    # print(local_src.avg('v_wiatr', 'deviceid'))
+    # print(local_src.sum('v_wiatr', 'deviceid'))
+
+    # print(pd_src.find_by('deviceid', 5005, 0.5).count())
+    # pd_src.find_by('deviceId', 5024, 0.16).show()
+    # pd_src.join('deviceid', 'deviceId').show()
+    # pd_src.max('v_wiatr', 'deviceid').show()
+    # pd_src.min('v_wiatr', 'deviceid').show()
+    # pd_src.avg('v_wiatr', 'deviceid').show()
+    # pd_src.sum('v_wiatr', 'deviceid').show()
 
 
 if __name__ == "__main__":
