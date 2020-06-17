@@ -47,9 +47,12 @@ class LocalKafkaSource:
 
         return df_table_1
 
-    def find_by(self, column, value, limit=1):
+    def find_by(self, column, value, limit=None):
         df_table_1 = self.get_tables()
-        df_table_1 = df_table_1.head(round(len(df_table_1) * limit))
+
+        if limit is not None:
+            df_table_1 = df_table_1.head(round(len(df_table_1) * limit))
+
         df_table_1 = df_table_1[df_table_1[column] == value]
 
         return df_table_1
@@ -128,11 +131,15 @@ class KafkaSource:
 
         return df_1
 
-    def find_by(self, column, value, limit=1):
+    def find_by(self, column, value, limit=None):
         df_table_1 = self.get_spark_dfs()
-        df_table_1 = df_table_1\
-                        .limit(round(df_table_1.count() * limit))\
-                        .where(col(column) == value)
+
+        if limit is None:
+            df_table_1 = df_table_1.where(col(column) == value)
+        else:
+            df_table_1 = df_table_1\
+                            .limit(round(df_table_1.count() * limit))\
+                            .where(col(column) == value)
 
         return df_table_1
 
