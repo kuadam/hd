@@ -85,7 +85,6 @@ def insert(path_rec, path_dec, session):
         print('\r\tProgress: [%d%%]' % (100 * count / f_len), end="")
         filename = path_rec + "/" + f
 
-
         records = pd.read_csv(filename, sep=";", encoding="ISO-8859-1", skiprows=[2],
                               usecols=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], skip_blank_lines=True)
         records.insert(loc=0, column='deviceid', value=filename[-8:-4])

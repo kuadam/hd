@@ -10,7 +10,6 @@ def mongoInsert(PATH_REC, PATH_DEV):
     db = client['hd']
     insert(PATH_REC, PATH_DEV, db)
 
-
 def get_time(row):
     return row["Data_czas"].split()[1]
 
@@ -18,8 +17,7 @@ def get_time(row):
 def get_date(row):
     l_date = row["Data_czas"].split()[0]
     return l_date.replace(".", "-")
-
-
+  
 def insert(destdir, resdir, db):
     files = [f for f in listdir(destdir) if isfile(join(destdir, f))]
     for f in files:
