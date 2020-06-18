@@ -4,18 +4,23 @@ Projekt zaliczeniowy na laboratoria przedmiotu Hurtownie danych i przetwarzanie 
 
 
 ## TODO
+Implementacja:
 - [X] MongoDB - podstawowe zapytania
 - [X] Cassandra - podstawowe zapytania
-- [X] dokumentacja - uzupełnić
 - [X] SQL Server - podstawowe zapytania
 
 - [X] Kafka - podstawowe zapytania (lokalnie)
-- [ ] Kafka - podstawowe zapytania (w źródle - biblioteka Faust)
+- [ ] Kafka - podstawowe zapytania (w źródle - biblioteka pyspark.sql.streaming module)
 - [ ] Cassandra - join 
 - [X] User Interface
 - [X] testy podstawowych zapytań (Cassandra i SQLServer)
 
+Testy i analiza:
 - [ ] MongoDB - optymalizacja zapytań
 - [ ] Cassandra - optymalizacja zapytań
 - [ ] Kafka - optymalizacja zapytań
 - [ ] SQL Server - optymalizacja zapytań
+
+Inne:
+- [ ] Dokumentacja
+- [ ] Prezentacja końcowa
