@@ -13,6 +13,9 @@ class Params:
         self.column = ""
         self.value = ""
         self.aggregated = ""
+        self.limit = None
+        self.count = None
+        self.json_schema = ""
 
     def print(self):
         attrs = vars(self)
@@ -43,7 +46,9 @@ class InputData:
                                                         "Insert them with semicolon as separator, ex: col1;col2")
         self.parser.add_argument('-v', '--value', help="Value to search by.")
         self.parser.add_argument('-a', '--aggregated', help="Value to aggregate by.")
-
+        self.parser.add_argument('-l', '--limit', help="todo", type=float, default=None)
+        self.parser.add_argument('-cnt', '--count', help="todo", type=int, default=None)
+        self.parser.add_argument('-j', '--json_schema', help="todo")
         self.parser.parse_args(self.args, namespace=self.params)
 
     @staticmethod

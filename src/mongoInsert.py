@@ -16,7 +16,7 @@ def insert(destdir, resdir, db):
     for f in files:
         file = destdir + "/" + f
 
-        df = pd.read_csv(file, sep=";", encoding="ISO-8859-1", skiprows=[2], usecols=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        df = pd.read_csv(file, sep=";", encoding="windows-1250", skiprows=[2], usecols=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
                          skip_blank_lines=True, decimal=',')
 
         df.insert(loc=0, column='deviceid', value=file[-8:-4])
@@ -31,7 +31,7 @@ def insert(destdir, resdir, db):
 
     devices = db['device']
     items = []
-    with open(resdir+'urzadzenia_rozliczeniowe_opis.csv', newline='\n') as csvfile:
+    with open(resdir+'urzadzenia_rozliczeniowe_opis.csv', newline='\n', encoding="windows-1250") as csvfile:
         reader = csv.reader(csvfile, delimiter=";")
         for row in reader:
             item = {"deviceid": row[0],
