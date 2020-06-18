@@ -103,16 +103,16 @@ def main():
 
     # Kafka TESTS
 
-    print(local_src.find_by('deviceid', 5005, 0.5))
-    # print(local_src.find_by('deviceId', 5024, 0.16))
+    print(local_src.find_by('deviceid', 5005, 0.5, 61296))
+    # print(local_src.find_by('deviceId', 5024, 0.16, 61296))
     # print(local_src.join('deviceid', 'deviceId'))
     # print(local_src.max('v_wiatr', 'deviceid'))
     # print(local_src.min('v_wiatr', 'deviceid'))
     # print(local_src.avg('v_wiatr', 'deviceid'))
     # print(local_src.sum('v_wiatr', 'deviceid'))
 
-    # print(pd_src.find_by('deviceid', 5005, 0.5).count())
-    # pd_src.find_by('deviceId', 5024, 0.16).show()
+    # print(pd_src.find_by('deviceid', 5005, 0.5, 61296).count())
+    # pd_src.find_by('deviceId', 5024, 0.16, 61296).show()
     # pd_src.join('deviceid', 'deviceId').show()
     # pd_src.max('v_wiatr', 'deviceid').show()
     # pd_src.min('v_wiatr', 'deviceid').show()
