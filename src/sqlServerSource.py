@@ -59,9 +59,8 @@ class SqlServerSource:
     def find_by(self, table_name, column, value, limit=None, count=None):
         if limit is not None and count is not None:
             limit = round(limit*count)
-            query = "SELECT * FROM" \
-                "(SELECT * FROM {} LIMIT {})" \
-                "WHERE {}={}".format(table_name, column, limit, str(value))
+            query = "WITH limited as ( SELECT TOP {} * FROM {} )" \
+                    " SELECT * from limited WHERE {} = {}".format(limit, table_name, column, value)
         else:
             query = "SELECT * FROM {} WHERE {}={}".format(table_name, column, str(value))
         return pd.DataFrame(pd.read_sql(query, self.cnxn))
