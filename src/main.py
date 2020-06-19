@@ -79,7 +79,7 @@ def main():
     # params = show_ui(sys.argv[1:]) #main arguments
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace -s cassandra"
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace"
-    example = "-s mongoDB -db hd_keyspace -t record -o find -c deviceid -v 5005 -cnt 61296 -l 0.5"
+    example = "-s mongoDB -db hd -t record -o find -c deviceid -v 5005 -cnt 61296 -l 0.5"
     example = example.split()
     params = show_ui(example)
 
