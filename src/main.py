@@ -16,7 +16,8 @@ from src.userInterface import *
 from src.paths import *
 
 
-def get_sources(source_name, db):
+def get_sources(params):
+    source_name = params.source
     local_src = None
     pd_src = None
     if source_name == "cassandra":
@@ -29,7 +30,7 @@ def get_sources(source_name, db):
     elif source_name == "mongoDB":
         client = MongoClient()
         db = client['hd']
-        local_src = LocalMongoSource(db)
+        local_src = LocalMongoSource(params.database)
         pd_src = MongoSource(db)
     elif source_name == "sqlServer":
         cnxn = pyodbc.connect(r'Driver={SQL Server};Server=.\SQLEXPRESS;Database=hd;Trusted_Connection=yes;')
@@ -38,10 +39,19 @@ def get_sources(source_name, db):
     elif source_name == "kafka":
         print('nyny')
         # parameters for constructors shown below
-        # local_src = LocalKafkaSource(topic_1, topic_2=None)
-        # pd_src = KafkaSource(topic_1, schema_1, topic_2=None, schema_2=None)
+        topic_1 = params.table
+        topic_2 = None
+        schema_1= params.json_schema
+        schema_2 = None
+        if params.operation == "join":
+            topic_1 = params.table[0]
+            topic_2 = params.table[1]
+            schema_1 = params.json_schema[0]
+            schema_2 = params.json_schema[0]
+        local_src = LocalKafkaSource(topic_1, topic_2)
+        pd_src = KafkaSource(topic_1, schema_1, topic_2, schema_2)
     else:
-        print("database " + db + " not found :(")
+        print("database " + source_name + " not found :(")
     return local_src, pd_src
 
 
@@ -79,10 +89,10 @@ def main():
     # UI
     # params = show_ui(sys.argv[1:]) #main arguments
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace -s cassandra"
-    # example = "-t record -c energia -o max -v 5005 -db hd_keyspace"
-    example = ""
+    example = "-s kafka -t record -c energia -o find -v 5005 "
+    # example = ""
     example = example.split()
-    # params = show_ui(example)
+    params = show_ui(example)
 
     # CONNECT
     # local_src, pd_src = get_sources(params.source, params.database)
@@ -93,7 +103,7 @@ def main():
 
     # Examples for Kafka class instances initialization
 
-    local_src = LocalKafkaSource('kafka-source-records')
+    #local_src = LocalKafkaSource('kafka-source-records')
     # local_src = LocalKafkaSource('kafka-source-devices')
     # local_src = LocalKafkaSource('kafka-source-records', 'kafka-source-devices')
 
@@ -103,7 +113,7 @@ def main():
 
     # Kafka TESTS
 
-    print(local_src.find_by('deviceid', 5005, 0.5, 61296))
+    #print(local_src.find_by('deviceid', 5005, 0.5, 61296))
     # print(local_src.find_by('deviceId', 5024, 0.16, 61296))
     # print(local_src.join('deviceid', 'deviceId'))
     # print(local_src.max('v_wiatr', 'deviceid'))
