@@ -10,8 +10,8 @@ Implementacja:
 - [X] SQL Server - podstawowe zapytania
 
 - [X] Kafka - podstawowe zapytania (lokalnie)
-- [ ] Kafka - podstawowe zapytania (w źródle - biblioteka pyspark.sql.streaming module)
-- [ ] Cassandra - join 
+- [X] Kafka - podstawowe zapytania (w źródle - biblioteka pyspark.sql.streaming module)
+- [X] Cassandra - join 
 - [X] User Interface
 - [X] testy podstawowych zapytań (Cassandra i SQLServer)
 
