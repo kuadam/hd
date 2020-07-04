@@ -8,7 +8,7 @@ Implementacja:
 - [X] MongoDB - podstawowe zapytania
 - [X] Cassandra - podstawowe zapytania
 - [X] SQL Server - podstawowe zapytania
-
+- [X] Interface
 - [X] Kafka - podstawowe zapytania (lokalnie)
 - [X] Kafka - podstawowe zapytania (w źródle - biblioteka pyspark.sql.streaming module)
 - [X] Cassandra - join 
