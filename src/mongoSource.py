@@ -6,11 +6,9 @@ class LocalMongoSource:
     def __init__(self, db):
         self.db = db
 
-    def find_by(self, table_name, column, value, limit=None, count=None):
+    def find_by(self, table_name, column, value):
         table = self.db[table_name]
         data_frame = pd.DataFrame(list(table.find()))
-        if limit is not None and count is not None:
-            data_frame = data_frame.head(round(limit * count))
         data_frame = data_frame[data_frame[column] == value]
         return data_frame
 
@@ -58,16 +56,10 @@ class MongoSource:
     def __init__(self, db):
         self.db = db
 
-    def find_by(self, table_name, column, value, limit=None, count=None):
+    def find_by(self, table_name, column, value):
         table = self.db[table_name]
-        if limit is None or count is None:
-            return pd.DataFrame(list(table.find({column: value})))
-        limit = round(limit*count)
-        pipeline = [
-            {"$limit": limit},
-            {"$match": {column: value}}
-        ]
-        return pd.DataFrame(list(table.aggregate(pipeline)))
+        return pd.DataFrame(list(table.find({column: value})))
+
 
     def join_cross(self, left_table_name, right_table_name):
         left_table = self.db[left_table_name]

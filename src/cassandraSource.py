@@ -14,7 +14,7 @@ class LocalCassandraSource:
         self.session=session
         self.keyspace=keyspace
 
-    def find_by(self, table_name, column_name, value, limit=None, count=None):
+    def find_by(self, table_name, column_name, value):
         data_frame = self.session.execute("SELECT * FROM {}.{};".format(self.keyspace, table_name))._current_rows
         data_frame = data_frame[data_frame[column_name.lower()] == int(value)]
         return data_frame
@@ -52,7 +52,7 @@ class CassandraSource:
         self.session = session
         self.keyspace = keyspace
 
-    def find_by(self, table_name, column_name, value, limit=None, count=None):
+    def find_by(self, table_name, column_name, value):
         sql_query = "SELECT * FROM {}.{} WHERE {}={} ALLOW FILTERING;".format(self.keyspace, table_name, column_name, str(value))
         rslt = self.session.execute(sql_query)
         return rslt._current_rows
