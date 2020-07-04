@@ -76,15 +76,15 @@ def main():
     # CREATE DATABASE AND INSERT DATA
     # cassandra_insert(PATH_REC, PATH_DEV)
     # mongoInsert(PATH_REC, PATH_DEV)
-    # sqlServer_insert(PATH_REC, PATH_DEV)
 
+    # sqlServer_insert(PATH_REC, PATH_DEV)
     # UI
     # params = show_ui(sys.argv[1:]) #main arguments
 
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace -s cassandra"
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace"
 
-    example = "-s cassandra -db hd_keyspace -t record -o find -c deviceid -v 5005,5004"
+    example = "-s mongoDB -db hd -t device -o find -c deviceid -v 5005,5004"
 
     example = example.split()
     params = show_ui(example)

@@ -69,7 +69,7 @@ class MongoSource:
     def find_in(self, table_name, column, values):
         table = self.db[table_name]
         #TODO
-        return pd.DataFrame(list(table.find({column: values})))
+        return pd.DataFrame(list(table.find({column: {"$in": values.split(",")}})))
 
     def join_cross(self, left_table_name, right_table_name):
         left_table = self.db[left_table_name]
