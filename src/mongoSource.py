@@ -12,6 +12,12 @@ class LocalMongoSource:
         data_frame = data_frame[data_frame[column] == value]
         return data_frame
 
+    def find_in(self, table_name, column, values):
+        table = self.db[table_name]
+        data_frame = pd.DataFrame(list(table.find()))
+        data_frame = data_frame[data_frame[column].isin(values.split(","))]
+        return data_frame
+
     def join_cross(self, left_table_name, right_table_name):
         data_records = pd.DataFrame(list(self.db[left_table_name].find()))
         data_devices = pd.DataFrame(list(self.db[right_table_name].find()))
@@ -60,6 +66,10 @@ class MongoSource:
         table = self.db[table_name]
         return pd.DataFrame(list(table.find({column: value})))
 
+    def find_in(self, table_name, column, values):
+        table = self.db[table_name]
+        #TODO
+        return pd.DataFrame(list(table.find({column: values})))
 
     def join_cross(self, left_table_name, right_table_name):
         left_table = self.db[left_table_name]

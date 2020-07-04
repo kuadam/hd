@@ -48,7 +48,10 @@ def get_sources(source_name, db):
 def measure(params: Params, local_src, pd_src):
     # compare operations
     if params.operation == "find":
-        find_by_compare(local_src, pd_src, params.table, params.column, params.value, params.limit, params.count)
+        if len(params.value.split(",")) == 1:
+            find_by_compare(local_src, pd_src, params.table, params.column, params.value)
+        else:
+            find_in_compare(local_src, pd_src, params.table, params.column, params.value)
     elif params.operation == "join":
         join_compare(local_src, pd_src, params.table[0], params.table[1], params.column[0], params.column[1])
     elif params.operation == "max":
@@ -81,7 +84,7 @@ def main():
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace -s cassandra"
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace"
 
-    example = "-s mongoDB -db hd -t record -o find -c deviceid -v 5005 -cnt 61296 -l 0.5"
+    example = "-s cassandra -db hd_keyspace -t record -o find -c deviceid -v 5005,5004"
 
     example = example.split()
     params = show_ui(example)
@@ -92,7 +95,6 @@ def main():
     # MEASURE AND COMPARE
     if local_src is not None and pd_src is not None:
         measure(params, local_src, pd_src)
-
 
 
 if __name__ == "__main__":

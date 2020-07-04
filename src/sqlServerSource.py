@@ -14,6 +14,12 @@ class LocalSqlServerSource:
         data_frame = data_frame[data_frame[column] == int(value)]
         return data_frame
 
+    def find_in(self, table_name, column, values):
+        query = f'SELECT * FROM {table_name}'
+        data_frame = pd.read_sql(query, self.cnxn)
+        data_frame = data_frame[data_frame[column].isin(values.split(","))]
+        return data_frame
+
     def join(self, left_table_name, right_table_name, left_column, right_column):
         query = f'SELECT * FROM {left_table_name}'
         data_records = pd.read_sql(query, self.cnxn)
@@ -56,6 +62,10 @@ class SqlServerSource:
 
     def find_by(self, table_name, column, value):
         query = "SELECT * FROM {} WHERE {}={}".format(table_name, column, str(value))
+        return pd.DataFrame(pd.read_sql(query, self.cnxn))
+
+    def find_in(self, table_name, column, values):
+        query = "SELECT * FROM {} WHERE {} in ({})".format(table_name, column, values)
         return pd.DataFrame(pd.read_sql(query, self.cnxn))
 
     def join(self, left_table_name, right_table_name, left_column, right_column):

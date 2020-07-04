@@ -19,6 +19,11 @@ class LocalCassandraSource:
         data_frame = data_frame[data_frame[column_name.lower()] == int(value)]
         return data_frame
 
+    def find_in(self, table_name, column_name, values):
+        data_frame = self.session.execute("SELECT * FROM {}.{};".format(self.keyspace, table_name))._current_rows
+        data_frame = data_frame[data_frame[column_name].isin(values.split(","))]
+        return data_frame
+
     def join(self, left_table_name, right_table_name, left_column, right_column):
         data_records = self.session.execute("SELECT * FROM {}.{};".format(self.keyspace, left_table_name))._current_rows
         data_devices = self.session.execute("SELECT * FROM {}.{};".format(self.keyspace, right_table_name))._current_rows
@@ -54,6 +59,11 @@ class CassandraSource:
 
     def find_by(self, table_name, column_name, value):
         sql_query = "SELECT * FROM {}.{} WHERE {}={} ALLOW FILTERING;".format(self.keyspace, table_name, column_name, str(value))
+        rslt = self.session.execute(sql_query)
+        return rslt._current_rows
+
+    def find_in(self, table_name, column_name, values):
+        sql_query = "SELECT * FROM {}.{} WHERE {} in ({}) ALLOW FILTERING;".format(self.keyspace, table_name, column_name, values)
         rslt = self.session.execute(sql_query)
         return rslt._current_rows
 
