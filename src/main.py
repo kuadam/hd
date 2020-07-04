@@ -25,8 +25,8 @@ def get_sources(params):
         session = cluster.connect()
         session.row_factory = pandas_factory
         session.default_fetch_size = None
-        local_src = LocalCassandraSource(session)
-        pd_src = CassandraSource(session)
+        local_src = LocalCassandraSource(session, db)
+        pd_src = CassandraSource(session, db)
     elif source_name == "mongoDB":
         client = MongoClient()
         db = client['hd']
@@ -58,17 +58,27 @@ def get_sources(params):
 def measure(params: Params, local_src, pd_src):
     # compare operations
     if params.operation == "find":
-        find_by_compare(local_src, pd_src, params.table, params.column, params.value)
+        find_by_compare(local_src, pd_src, params.table, params.column, params.value, params.limit, params.count)
     elif params.operation == "join":
         join_compare(local_src, pd_src, params.table[0], params.table[1], params.column[0], params.column[1])
     elif params.operation == "max":
-        max_compare(local_src, pd_src, params.table, params.column, params.aggregated)
+        
+        '''max_compare(local_src, pd_src, params.table, params.column, params.aggregated)
     elif params.operation == "min":
         min_compare(local_src, pd_src, params.table, params.column, params.aggregated)
     elif params.operation == "avg":
         avg_compare(local_src, pd_src, params.table, params.column, params.aggregated)
     elif params.operation == "sum":
-        sum_compare(local_src, pd_src, params.table, params.column, params.aggregated)
+        sum_compare(local_src, pd_src, params.table, params.column, params.aggregated)'''
+
+        max_compare(local_src, pd_src, params.table, params.aggregated, params.column)
+    elif params.operation == "min":
+        min_compare(local_src, pd_src, params.table, params.aggregated, params.column)
+    elif params.operation == "avg":
+        avg_compare(local_src, pd_src, params.table, params.aggregated, params.column)
+    elif params.operation == "sum":
+        sum_compare(local_src, pd_src, params.table, params.aggregated, params.column)
+
 
 
 def show_ui(args):
@@ -88,11 +98,15 @@ def main():
 
     # UI
     # params = show_ui(sys.argv[1:]) #main arguments
+
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace -s cassandra"
     # example = "-s kafka -t kafka-source-records -j record_schema.json -c deviceid -o find -v 5005"
     # example = "-s kafka -t kafka-source-records -j record_schema.json -a v_wiatr -c deviceid -o avg"
-    example = "-s kafka -t kafka-source-records;kafka-source-devices -j record_schema.json;device_schema.json -o join -c deviceid;deviceId"
-    #example = ""
+    # example = "-s kafka -t kafka-source-records;kafka-source-devices -j record_schema.json;device_schema.json -o join -c deviceid;deviceId"
+    # example = ""
+    # example = "-t record -c energia -o max -v 5005 -db hd_keyspace"
+
+    example = "-s mongoDB -db hd -t record -o find -c deviceid -v 5005 -cnt 61296 -l 0.5"
     example = example.split()
 
     params = show_ui(example)
@@ -104,33 +118,6 @@ def main():
     if local_src is not None and pd_src is not None:
         measure(params, local_src, pd_src)
 
-    # Examples for Kafka class instances initialization
-
-    # local_src = LocalKafkaSource('kafka-source-records')
-    # local_src = LocalKafkaSource('kafka-source-devices')
-    # local_src = LocalKafkaSource('kafka-source-records', 'kafka-source-devices')
-
-    # pd_src = KafkaSource('kafka-source-records', 'record_schema.json')
-    # pd_src = KafkaSource('kafka-source-devices', 'device_schema.json')
-    # pd_src = KafkaSource('kafka-source-records', 'record_schema.json', 'kafka-source-devices', 'device_schema.json')
-
-    # Kafka TESTS
-
-    # print(local_src.find_by('deviceid', 5005, 0.5, 61296))
-    # print(local_src.find_by('kafka-source-records', 'deviceid', 5005))
-    # print(local_src.join('deviceid', 'deviceId'))
-    # print(local_src.max('kafka-source-records', 'v_wiatr', 'deviceid').dtypes)
-    # print(local_src.min('v_wiatr', 'deviceid'))
-    # print(local_src.avg('v_wiatr', 'deviceid'))
-    # print(local_src.sum('v_wiatr', 'deviceid'))
-
-    # print(pd_src.find_by('deviceid', 5005, 0.5, 61296).count())
-    # pd_src.find_by('deviceId', 5024, 0.16, 61296).show()
-    # pd_src.join('deviceid', 'deviceId').show()
-    #print(pd_src.max('kafka-source-records', 'v_wiatr', 'deviceid').dtypes)
-    # pd_src.min('v_wiatr', 'deviceid').show()
-    # pd_src.avg('v_wiatr', 'deviceid').show()
-    # pd_src.sum('v_wiatr', 'deviceid').show()
 
 
 if __name__ == "__main__":

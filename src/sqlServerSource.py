@@ -8,9 +8,11 @@ class LocalSqlServerSource:
     def __init__(self, cnxn):
         self.cnxn = cnxn
 
-    def find_by(self, table_name, column, value):
+    def find_by(self, table_name, column, value, limit=None, count=None):
         query = f'SELECT * FROM {table_name}'
         data_frame = pd.read_sql(query, self.cnxn)
+        if limit is not None and count is not None:
+            data_frame= data_frame.head(round(limit*count))
         data_frame = data_frame[data_frame[column] == int(value)]
         return data_frame
 
@@ -54,8 +56,13 @@ class SqlServerSource:
         self.cnxn = cnxn
         self.cursor = cnxn.cursor()
 
-    def find_by(self, table_name, column, value):
-        query = "SELECT * FROM {} WHERE {}={}".format(table_name, column, str(value))
+    def find_by(self, table_name, column, value, limit=None, count=None):
+        if limit is not None and count is not None:
+            limit = round(limit*count)
+            query = "WITH limited as ( SELECT TOP {} * FROM {} )" \
+                    " SELECT * from limited WHERE {} = {}".format(limit, table_name, column, value)
+        else:
+            query = "SELECT * FROM {} WHERE {}={}".format(table_name, column, str(value))
         return pd.DataFrame(pd.read_sql(query, self.cnxn))
 
     def join(self, left_table_name, right_table_name, left_column, right_column):

@@ -14,6 +14,8 @@ class Params:
         self.column = ""
         self.value = ""
         self.aggregated = ""
+        self.limit = None
+        self.count = None
         self.json_schema = ""
 
     def print(self):
@@ -39,10 +41,11 @@ class InputData:
         self.parser.add_argument('-o', '--operation', help="Operation to be compared. "
                                                            "Please check the documentation "
                                                            "for more info.", choices=self.possible_operations)
-        self.parser.add_argument('-t', '--table', help="Table or topic (Kafka) to be grouped by or search by value. "
-                                                       "Join operation requires two tables/topics."
+
+        self.parser.add_argument('-t', '--table', help="Table or topic (Kafka) to group by or search by value. "
+                                                       "Join operation requires two tables. "
                                                        "Insert them with semicolon as separator, ex: table1;table2")
-        self.parser.add_argument('-c', '--column', help="Column to be search or aggregated by."
+        self.parser.add_argument('-c', '--column', help="Column to search or group by. "
                                                         "Join operation requires two columns. "
                                                         "Insert them with semicolon as separator, ex: col1;col2")
         self.parser.add_argument('-v', '--value', help="Value to search by.")
@@ -51,6 +54,15 @@ class InputData:
                                                              "For kafka, join operation requires two topics"
                                                              "Insert them with semicolon as separator, ex: schema1;schema2"
                                  )
+        self.parser.add_argument('-l', '--limit', help="Limit table size for filtering operations. "
+                                                       "Value in the range [0:1]. "
+                                                       "If specified, parameter count must be used. "
+                                                       "Number of rows is calculated as follows: "
+                                                       "limited_rows = round(limit * count). "
+                                                       "If not specified, parameter count will be ignored and "
+                                                       "whole table will be filtered.", type=float, default=None)
+        self.parser.add_argument('-cnt', '--count', help="Total number of records. Required when using limited "
+                                                         "filtering.", type=int, default=None)
         self.parser.parse_args(self.args, namespace=self.params)
 
     @staticmethod
@@ -110,6 +122,12 @@ class InputData:
                 self.params.column = self.ask_about("column")
             while self.params.value == "":
                 self.params.value = self.ask_about("wanted value")
+            if self.params.limit is not None:
+                while self.params.count in (None, ""):
+                    self.params.count = self.ask_about("count")
+                self.params.count = float(self.params.count)
+            else:
+                self.params.count = None
             return 0
         else:  # join
             if self.params.source=="kafka":
