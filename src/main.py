@@ -84,7 +84,7 @@ def main():
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace -s cassandra"
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace"
 
-    example = "-s mongoDB -db hd -t device -o find -c deviceid -v 5005,5004"
+    example = "-s sqlServer -db hd -t device -o find -c deviceid -v 5005,5004"
 
     example = example.split()
     params = show_ui(example)
