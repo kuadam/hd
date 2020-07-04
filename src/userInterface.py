@@ -16,8 +16,6 @@ class Params:
         self.aggregated = ""
         self.json_schema = ""
 
-
-
     def print(self):
         attrs = vars(self)
         print("Params:")

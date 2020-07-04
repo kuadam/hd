@@ -41,7 +41,7 @@ def get_sources(params):
         # parameters for constructors shown below
         topic_1 = params.table
         topic_2 = None
-        schema_1= params.json_schema
+        schema_1 = params.json_schema
         schema_2 = None
         if params.operation == "join":
             topic_1 = params.table[0]
@@ -62,13 +62,13 @@ def measure(params: Params, local_src, pd_src):
     elif params.operation == "join":
         join_compare(local_src, pd_src, params.table[0], params.table[1], params.column[0], params.column[1])
     elif params.operation == "max":
-        max_compare(local_src, pd_src, params.table, params.column, params.value)
+        max_compare(local_src, pd_src, params.table, params.column, params.aggregated)
     elif params.operation == "min":
-        min_compare(local_src, pd_src, params.table, params.column, params.value)
+        min_compare(local_src, pd_src, params.table, params.column, params.aggregated)
     elif params.operation == "avg":
-        avg_compare(local_src, pd_src, params.table, params.column, params.value)
+        avg_compare(local_src, pd_src, params.table, params.column, params.aggregated)
     elif params.operation == "sum":
-        sum_compare(local_src, pd_src, params.table, params.column, params.value)
+        sum_compare(local_src, pd_src, params.table, params.column, params.aggregated)
 
 
 def show_ui(args):
@@ -89,21 +89,24 @@ def main():
     # UI
     # params = show_ui(sys.argv[1:]) #main arguments
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace -s cassandra"
-    example = "-s kafka -t record -c energia -o find -v 5005 "
-    # example = ""
+    # example = "-s kafka -t kafka-source-records -j record_schema.json -c deviceid -o find -v 5005"
+    # example = "-s kafka -t kafka-source-records -j record_schema.json -a v_wiatr -c deviceid -o avg"
+    example = "-s kafka -t kafka-source-records;kafka-source-devices -j record_schema.json;device_schema.json -o join -c deviceid;deviceId"
+    #example = ""
     example = example.split()
+
     params = show_ui(example)
 
     # CONNECT
-    # local_src, pd_src = get_sources(params.source, params.database)
+    local_src, pd_src = get_sources(params)
 
     # MEASURE AND COMPARE
-    # if local_src is not None and pd_src is not None:
-    #    measure(params, local_src, pd_src)
+    if local_src is not None and pd_src is not None:
+        measure(params, local_src, pd_src)
 
     # Examples for Kafka class instances initialization
 
-    #local_src = LocalKafkaSource('kafka-source-records')
+    # local_src = LocalKafkaSource('kafka-source-records')
     # local_src = LocalKafkaSource('kafka-source-devices')
     # local_src = LocalKafkaSource('kafka-source-records', 'kafka-source-devices')
 
@@ -113,10 +116,10 @@ def main():
 
     # Kafka TESTS
 
-    #print(local_src.find_by('deviceid', 5005, 0.5, 61296))
-    # print(local_src.find_by('deviceId', 5024, 0.16, 61296))
+    # print(local_src.find_by('deviceid', 5005, 0.5, 61296))
+    # print(local_src.find_by('kafka-source-records', 'deviceid', 5005))
     # print(local_src.join('deviceid', 'deviceId'))
-    # print(local_src.max('v_wiatr', 'deviceid'))
+    # print(local_src.max('kafka-source-records', 'v_wiatr', 'deviceid').dtypes)
     # print(local_src.min('v_wiatr', 'deviceid'))
     # print(local_src.avg('v_wiatr', 'deviceid'))
     # print(local_src.sum('v_wiatr', 'deviceid'))
@@ -124,7 +127,7 @@ def main():
     # print(pd_src.find_by('deviceid', 5005, 0.5, 61296).count())
     # pd_src.find_by('deviceId', 5024, 0.16, 61296).show()
     # pd_src.join('deviceid', 'deviceId').show()
-    # pd_src.max('v_wiatr', 'deviceid').show()
+    #print(pd_src.max('kafka-source-records', 'v_wiatr', 'deviceid').dtypes)
     # pd_src.min('v_wiatr', 'deviceid').show()
     # pd_src.avg('v_wiatr', 'deviceid').show()
     # pd_src.sum('v_wiatr', 'deviceid').show()

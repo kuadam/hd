@@ -47,41 +47,41 @@ class LocalKafkaSource:
 
         return df_table_1
 
-    def find_by(self, column, value, limit=None, count=None):
+    def find_by(self, table_name,  column, value, limit=None, count=None):
         df_table_1 = self.get_tables()
 
         if limit is not None:
             df_table_1 = df_table_1.head(round(count * limit))
 
-        df_table_1 = df_table_1[df_table_1[column] == value]
+        df_table_1 = df_table_1[df_table_1[column] == int(value)]
 
         return df_table_1
 
-    def join(self, left_column, right_column):
+    def join(self, left_table_name, right_table_name, left_column, right_column):
         df_table_1, df_table_2 = self.get_tables()
         df_table_merged = pd.merge(df_table_1, df_table_2, how='left', left_on=left_column, right_on=right_column)
 
         return df_table_merged
 
-    def max(self, column, group_by):
+    def max(self, table_name, column, group_by):
         df_table_1 = self.get_tables()
         df_table_1 = df_table_1.groupby(group_by)[column].max()
 
         return df_table_1
 
-    def min(self, column, group_by):
+    def min(self, table_name, column, group_by):
         df_table_1 = self.get_tables()
         df_table_1 = df_table_1.groupby(group_by)[column].min()
 
         return df_table_1
 
-    def avg(self, column, group_by):
+    def avg(self, table_name, column, group_by):
         df_table_1 = self.get_tables()
         df_table_1 = df_table_1.groupby(group_by)[column].mean()
 
         return df_table_1
 
-    def sum(self, column, group_by):
+    def sum(self, table_name, column, group_by):
         df_table_1 = self.get_tables()
         df_table_1 = df_table_1.groupby(group_by)[column].sum()
 
@@ -131,47 +131,47 @@ class KafkaSource:
 
         return df_1
 
-    def find_by(self, column, value, limit=None, count=None):
+    def find_by(self, table_name, column, value, limit=None, count=None):
         df_table_1 = self.get_spark_dfs()
 
         if limit is None:
-            df_table_1 = df_table_1.where(col(column) == value)
+            df_table_1 = df_table_1.where(col(column) == int(value))
         else:
             df_table_1 = df_table_1\
                             .limit(round(count * limit))\
                             .where(col(column) == value)
 
-        return df_table_1
+        return df_table_1.toPandas()
 
-    def join(self, left_column, right_column):
+    def join(self, left_table_name, right_table_name, left_column, right_column):
         df_table_1, df_table_2 = self.get_spark_dfs()
         df_table_merged = df_table_1.join(df_table_2, df_table_1[left_column] == df_table_2[right_column], how="left")
 
-        return df_table_merged
+        return df_table_merged.toPandas()
 
-    def max(self, column, group_by):
+    def max(self, table_name, column, group_by):
         df_table_1 = self.get_spark_dfs()
         df_table_1 = df_table_1.groupby(group_by).max(column)
 
-        return df_table_1
+        return df_table_1.toPandas()
 
-    def min(self, column, group_by):
+    def min(self, table_name, column, group_by):
         df_table_1 = self.get_spark_dfs()
         df_table_1 = df_table_1.groupby(group_by).min(column)
 
-        return df_table_1
+        return df_table_1.toPandas()
 
-    def avg(self, column, group_by):
+    def avg(self, table_name, column, group_by):
         df_table_1 = self.get_spark_dfs()
         df_table_1 = df_table_1.groupby(group_by).avg(column)
 
-        return df_table_1
+        return df_table_1.toPandas()
 
-    def sum(self, column, group_by):
+    def sum(self, table_name, column, group_by):
         df_table_1 = self.get_spark_dfs()
         df_table_1 = df_table_1.groupby(group_by).sum(column)
 
-        return df_table_1
+        return df_table_1.toPandas()
 
 
 
