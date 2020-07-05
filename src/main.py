@@ -26,7 +26,7 @@ def get_sources(params):
         session.row_factory = pandas_factory
         session.default_fetch_size = None
         local_src = LocalCassandraSource(session, params.database)
-        pd_src = CassandraSource(session, params.database)
+        pd_src = CassandraSource(session, params.database, params.join_version)
     elif source_name == "mongoDB":
         client = MongoClient()
         db = client['hd']
@@ -95,11 +95,11 @@ def main():
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace -s cassandra"
     # example = "-s kafka -t kafka-source-records -j record_schema.json -c deviceid -o find -v 5004,5005"
     # example = "-s kafka -t kafka-source-records -j record_schema.json -a v_wiatr -c deviceid -o sum"
-    example = "-s kafka -t kafka-source-records;kafka-source-devices -j record_schema.json;device_schema.json -o join -c deviceid;deviceId"
+    # example = "-s kafka -t kafka-source-records;kafka-source-devices -j record_schema.json;device_schema.json -o join -c deviceid;deviceId"
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace"
     # example = "-s sqlServer -db hd -t device -o find -c deviceid -v 5005,5004"
     # example = "-s mongoDB -db hd -t record -o find -c deviceid -v 5005 -cnt 61296 -l 0.5"
-    # example = ""
+    example = "-s cassandra -db hd_keyspace -t device_sorted;record_sorted -o join -c deviceid;deviceid -jv 1"
 
     example = example.split()
     params = show_ui(example)

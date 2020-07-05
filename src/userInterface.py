@@ -17,6 +17,7 @@ class Params:
         self.limit = None
         self.count = None
         self.json_schema = ""
+        self.join_version = 0
 
     def print(self):
         attrs = vars(self)
@@ -63,6 +64,7 @@ class InputData:
                                                        "whole table will be filtered.", type=float, default=None)
         self.parser.add_argument('-cnt', '--count', help="Total number of records. Required when using limited "
                                                          "filtering.", type=int, default=None)
+        self.parser.add_argument('-jv', '--join_version', help="TODO", type=int, default=0, choices=[0, 1])
         self.parser.parse_args(self.args, namespace=self.params)
 
     @staticmethod

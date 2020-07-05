@@ -49,9 +49,10 @@ class LocalCassandraSource:
 
 
 class CassandraSource:
-    def __init__(self, session, keyspace):
+    def __init__(self, session, keyspace, join_version):
         self.session = session
         self.keyspace = keyspace
+        self.join_version = join_version
 
     def find_by(self, table_name, column_name, value):
         sql_query = "SELECT * FROM {}.{} WHERE {}={} ALLOW FILTERING;".format(self.keyspace, table_name, column_name, str(value))
@@ -62,6 +63,14 @@ class CassandraSource:
         sql_query = "SELECT * FROM {}.{} WHERE {} in ({}) ALLOW FILTERING;".format(self.keyspace, table_name, column_name, values)
         rslt = self.session.execute(sql_query)
         return rslt._current_rows
+
+    def join(self, left_table_name, right_table_name, left_column, right_column):
+        if self.join_version == 0:
+            return self.join_left_sorted(left_table_name, right_table_name, left_column, right_column)
+        elif self.join_version == 1:
+            return self.join_both_sorted(left_table_name, right_table_name, left_column, right_column)
+        else:
+            return -1
 
     def join_both_sorted(self, left_table_name, right_table_name, left_column, right_column):
         data_devices = self.session.execute("SELECT * FROM {}.{};".format(self.keyspace,right_table_name))._current_rows
