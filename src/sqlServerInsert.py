@@ -19,9 +19,9 @@ def sqlServer_insert(path_rec, path_dev):
     insert(path_rec, path_dev, cursor, cnxn)
     t3 = time.time()
 
-    print(f'Creating: {round(t2 - t1, 6)}s')
-    print(f'Inserting: {round(t3 - t2, 6)}s')
-    print(f'Total: {round(t3 - t1, 6)}s')
+    print('Creating: {}s'.format(round(t2 - t1, 6)))
+    print('Inserting: {}s'.format(round(t3 - t2, 6)))
+    print('Total: {}s'.format(round(t3 - t1, 6)))
 
 
 def create(cnxn, cursor):

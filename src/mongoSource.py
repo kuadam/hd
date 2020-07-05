@@ -68,7 +68,6 @@ class MongoSource:
 
     def find_in(self, table_name, column, values):
         table = self.db[table_name]
-        #TODO
         return pd.DataFrame(list(table.find({column: {"$in": values.split(",")}})))
 
     def join_cross(self, left_table_name, right_table_name):
@@ -98,20 +97,20 @@ class MongoSource:
 
     def max(self, table_name, column, group_by):
         table = self.db[table_name]
-        pipeline = [{"$group": {"_id": f"${group_by}", "max": {"$max": f"${column}"}}}]
+        pipeline = [{"$group": {"_id": "${}".format(group_by), "max": {"$max": "${}".format(column)}}}]
         return pd.DataFrame(list(table.aggregate(pipeline)))
 
     def min(self, table_name, column, group_by):
         table = self.db[table_name]
-        pipeline = [{"$group": {"_id": f"${group_by}", "min": {"$min": f"${column}"}}}]
+        pipeline = [{"$group": {"_id": "${}".format(group_by), "min": {"$min": "${}".format(column)}}}]
         return pd.DataFrame(list(table.aggregate(pipeline)))
 
     def avg(self, table_name, column, group_by):
         table = self.db[table_name]
-        pipeline = [{"$group": {"_id": f"${group_by}", "avg": {"$avg": f"${column}"}}}]
+        pipeline = [{"$group": {"_id": "${}".format(group_by), "avg": {"$avg": "${}".format(column)}}}]
         return pd.DataFrame(list(table.aggregate(pipeline)))
 
     def sum(self, table_name, column, group_by):
         table = self.db[table_name]
-        pipeline = [{"$group": {"_id": f"${group_by}", "sum": {"$sum": f"${column}"}}}]
+        pipeline = [{"$group": {"_id": "${}".format(group_by), "sum": {"$sum": "${}".format(column)}}}]
         return pd.DataFrame(list(table.aggregate(pipeline)))

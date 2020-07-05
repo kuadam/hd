@@ -1,9 +1,5 @@
 import pandas as pd
 
-#KEYSPACE = "hd_keyspace"
-#TABLE1 = "record"
-#TABLE2 = "device"
-
 
 def pandas_factory(colnames, rows):
     return pd.DataFrame(rows, columns=colnames)
@@ -11,8 +7,8 @@ def pandas_factory(colnames, rows):
 
 class LocalCassandraSource:
     def __init__(self, session, keyspace):
-        self.session=session
-        self.keyspace=keyspace
+        self.session = session
+        self.keyspace = keyspace
 
     def find_by(self, table_name, column_name, value):
         data_frame = self.session.execute("SELECT * FROM {}.{};".format(self.keyspace, table_name))._current_rows

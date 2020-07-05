@@ -47,13 +47,15 @@ class LocalKafkaSource:
 
         return df_table_1
 
-    def find_by(self, table_name,  column, value, limit=None, count=None):
+    def find_by(self, table_name,  column, value):
         df_table_1 = self.get_tables()
-
-        if limit is not None:
-            df_table_1 = df_table_1.head(round(count * limit))
-
         df_table_1 = df_table_1[df_table_1[column] == int(value)]
+
+        return df_table_1
+
+    def find_in(self, table_name, column, values):
+        df_table_1 = self.get_tables()
+        df_table_1 = df_table_1[df_table_1[column].isin(values.split(","))]
 
         return df_table_1
 
@@ -131,15 +133,15 @@ class KafkaSource:
 
         return df_1
 
-    def find_by(self, table_name, column, value, limit=None, count=None):
+    def find_by(self, table_name, column, value):
         df_table_1 = self.get_spark_dfs()
+        df_table_1 = df_table_1.where(col(column) == int(value))
 
-        if limit is None:
-            df_table_1 = df_table_1.where(col(column) == int(value))
-        else:
-            df_table_1 = df_table_1\
-                            .limit(round(count * limit))\
-                            .where(col(column) == value)
+        return df_table_1.toPandas()
+
+    def find_in(self, table_name, column, values):
+        df_table_1 = self.get_spark_dfs()
+        df_table_1 = df_table_1.where(col(column).isin(values.split(",")))
 
         return df_table_1.toPandas()
 
