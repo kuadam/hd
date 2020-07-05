@@ -4,6 +4,7 @@ import argparse
 # TODO: implement or "are you sure" prompt
 # TODO: inform that unneeded parameters will be ignored and clear values in class instance
 
+
 class Params:
     def __init__(self):
         self.source = ""  # which technology
@@ -34,11 +35,14 @@ class InputData:
 
     def parse_arguments(self):
         self.parser.add_argument('-s', '--source', help="Technology to be used.", choices=self.possible_sources)
-        self.parser.add_argument('-db', '--database', help="Database, topic or keyspace to be used. ")
+        self.parser.add_argument('-db', '--database', help="Database (mongoDB, SQLServer) or keyspace (Cassandra) to be used."
+                                                           "For kafka, join operation requires two topics"
+                                                           "Insert them with semicolon as separator, ex: topic1;topic2")
         self.parser.add_argument('-o', '--operation', help="Operation to be compared. "
                                                            "Please check the documentation "
                                                            "for more info.", choices=self.possible_operations)
-        self.parser.add_argument('-t', '--table', help="Table to group by or search by value. "
+
+        self.parser.add_argument('-t', '--table', help="Table or topic (Kafka) to group by or search by value. "
                                                        "Join operation requires two tables. "
                                                        "Insert them with semicolon as separator, ex: table1;table2")
         self.parser.add_argument('-c', '--column', help="Column to search or group by. "
@@ -46,6 +50,10 @@ class InputData:
                                                         "Insert them with semicolon as separator, ex: col1;col2")
         self.parser.add_argument('-v', '--value', help="Value to search by.")
         self.parser.add_argument('-a', '--aggregated', help="Value to aggregate by.")
+        self.parser.add_argument('-j', '--json_schema', help=""
+                                                             "For kafka, join operation requires two topics"
+                                                             "Insert them with semicolon as separator, ex: schema1;schema2"
+                                 )
         self.parser.add_argument('-l', '--limit', help="Limit table size for filtering operations. "
                                                        "Value in the range [0:1]. "
                                                        "If specified, parameter count must be used. "
@@ -55,7 +63,6 @@ class InputData:
                                                        "whole table will be filtered.", type=float, default=None)
         self.parser.add_argument('-cnt', '--count', help="Total number of records. Required when using limited "
                                                          "filtering.", type=int, default=None)
-        self.parser.add_argument('-j', '--json_schema', help="todo")
         self.parser.parse_args(self.args, namespace=self.params)
 
     @staticmethod
@@ -77,10 +84,10 @@ class InputData:
         while self.params.source not in self.possible_sources:
             self.params.source = self.ask_about("source", missing=False, possible_values=self.possible_sources)
         param_name = "database"
-        if self.params.source == "cassandra":
+        if self.params.source == "kafka":
+            return
+        elif self.params.source == "cassandra":
             param_name = "keyspace"
-        elif self.params.source == "kafka":
-            param_name = "topic"
         while self.params.database == "":
             self.params.database = self.ask_about(param_name)
 
@@ -94,6 +101,9 @@ class InputData:
             self.params.operation = self.ask_about("operation", possible_values=self.possible_operations)
         while self.params.operation not in self.possible_operations:
             self.params.operation = self.ask_about("operation", missing=False, possible_values=self.possible_operations)
+        if self.params.source == "kafka" and self.params.operation != "join":
+            while self.params.json_schema == "":
+                self.params.json_schema = self.ask_about("json schema")
         if self.params.operation in ("max", "min", "avg", "sum"):
             while self.params.table == "":
                 self.params.table = self.ask_about("table")
@@ -104,7 +114,10 @@ class InputData:
             return 0
         elif self.params.operation == "find":
             while self.params.table == "":
-                self.params.table = self.ask_about("table")
+                param_name = "table "
+                if self.params.source == "kafka":
+                    param_name = "topic"
+                self.params.table = self.ask_about(param_name)
             while self.params.column == "":
                 self.params.column = self.ask_about("column")
             while self.params.value == "":
@@ -117,13 +130,27 @@ class InputData:
                 self.params.count = None
             return 0
         else:  # join
+            if self.params.source=="kafka":
+                while self.params.json_schema == "":
+                    self.params.json_schema = self.ask_about("json schemas")
+                self.params.json_schema = self.params.json_schema.split(";")
+                while len(self.params.json_schema) != 2 or self.empty_values(self.params.json_schema):  # check if not empty
+                    self.params.json_schema = self.ask_about("json schema", msg="You need two json schemas to do join! "
+                                                                       "Enter json schema names separated by semicolon")
+                    self.params.json_schema = self.params.json_schema.split(";")
             while self.params.table == "":
-                self.params.table = self.ask_about("tables")
+                param_name = "tables"
+                if self.params.source == "kafka":
+                    param_name = "topics"
+                self.params.table = self.ask_about(param_name)
             self.params.table = self.params.table.split(";")
             while len(self.params.table) != 2 or self.empty_values(self.params.table):  # check if not empty
+                param_name = "tables"
+                if self.params.source == "kafka":
+                    param_name = "topics"
                 # TODO: add one table
-                self.params.table = self.ask_about("tables", msg="You need two tables to do join! "
-                                                                 "Enter table names separated by semicolon")
+                self.params.table = self.ask_about(param_name, msg="You need two "+param_name+" to do join! "
+                                                                 "Enter "+param_name[:-1]+" names separated by semicolon")
                 self.params.table = self.params.table.split(";")
             while self.params.column == "":
                 self.params.column = self.ask_about("columns")
@@ -132,6 +159,7 @@ class InputData:
                 self.params.column = self.ask_about("columns", msg="You need two columns to do join! "
                                                                    "Enter column names separated by semicolon")
                 self.params.column = self.params.column.split(";")
+
             return 0
 
     def get_missing_info(self):
