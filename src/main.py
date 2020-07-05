@@ -33,7 +33,7 @@ def get_sources(params):
         local_src = LocalMongoSource(db)
         pd_src = MongoSource(db)
     elif source_name == "sqlServer":
-        cnxn = pyodbc.connect(r'Driver={SQL Server};Server=.\SQLEXPRESS;Database=hd;Trusted_Connection=yes;')
+        cnxn = pyodbc.connect(r'Driver={SQL Server};Server=.\SQLEXPRESS;Database={};Trusted_Connection=yes;'.format(params.database))
         local_src = LocalSqlServerSource(cnxn)
         pd_src = SqlServerSource(cnxn)
     elif source_name == "kafka":
