@@ -20,9 +20,9 @@ def show_params(elapsed_time, rows, push_down=True):
 '''FIND BY'''
 
 
-def find_by_measure(source, table_name, column, value, limit, count, push_down=True):
+def find_by_measure(source, table_name, column, value, push_down=True):
     start_time = time.time()
-    df = source.find_by(table_name, column, value, limit, count)
+    df = source.find_by(table_name, column, value)
     end_time = time.time()
     if isinstance(df, int):
         show_params(end_time - start_time, df, push_down)
@@ -30,13 +30,34 @@ def find_by_measure(source, table_name, column, value, limit, count, push_down=T
     show_params(end_time - start_time, df.shape[0], push_down)
 
 
-def find_by_compare(local_source, push_down_source, table_name, column, value, limit=None, count=None):
+def find_by_compare(local_source, push_down_source, table_name, column, value):
     print("\n=================================")
     print(f"Find by '{column}' ({value})\n")
-    find_by_measure(push_down_source, table_name, column, value, limit, count, True)
-    find_by_measure(local_source, table_name, column, value, limit, count, False)
+    find_by_measure(push_down_source, table_name, column, value, True)
+    find_by_measure(local_source, table_name, column, value,  False)
     print("=================================")
 
+
+
+'''FIND IN'''
+
+
+def find_in_measure(source, table_name, column, value, push_down=True):
+    start_time = time.time()
+    df = source.find_in(table_name, column, value)
+    end_time = time.time()
+    if isinstance(df, int):
+        show_params(end_time - start_time, df, push_down)
+        return
+    show_params(end_time - start_time, df.shape[0], push_down)
+
+
+def find_in_compare(local_source, push_down_source, table_name, column, value):
+    print("\n=================================")
+    print(f"Find '{column}' in ({value})\n")
+    find_in_measure(push_down_source, table_name, column, value, True)
+    find_in_measure(local_source, table_name, column, value,  False)
+    print("=================================")
 
 '''JOIN'''
 

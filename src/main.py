@@ -58,7 +58,10 @@ def get_sources(params):
 def measure(params: Params, local_src, pd_src):
     # compare operations
     if params.operation == "find":
-        find_by_compare(local_src, pd_src, params.table, params.column, params.value, params.limit, params.count)
+        if len(params.value.split(",")) == 1:
+            find_by_compare(local_src, pd_src, params.table, params.column, params.value)
+        else:
+            find_in_compare(local_src, pd_src, params.table, params.column, params.value)
     elif params.operation == "join":
         join_compare(local_src, pd_src, params.table[0], params.table[1], params.column[0], params.column[1])
     elif params.operation == "max":
@@ -96,6 +99,7 @@ def main():
     # sqlServer_insert(PATH_REC, PATH_DEV)
     # run KafkaProducer
 
+    # sqlServer_insert(PATH_REC, PATH_DEV)
     # UI
     # params = show_ui(sys.argv[1:]) #main arguments
 
@@ -105,7 +109,7 @@ def main():
     # example = "-s kafka -t kafka-source-records;kafka-source-devices -j record_schema.json;device_schema.json -o join -c deviceid;deviceId"
     # example = ""
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace"
-
+    # example = "-s sqlServer -db hd -t device -o find -c deviceid -v 5005,5004"
     example = "-s mongoDB -db hd -t record -o find -c deviceid -v 5005 -cnt 61296 -l 0.5"
     example = example.split()
 
@@ -117,7 +121,6 @@ def main():
     # MEASURE AND COMPARE
     if local_src is not None and pd_src is not None:
         measure(params, local_src, pd_src)
-
 
 
 if __name__ == "__main__":
