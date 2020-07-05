@@ -25,12 +25,12 @@ def get_sources(params):
         session = cluster.connect()
         session.row_factory = pandas_factory
         session.default_fetch_size = None
-        local_src = LocalCassandraSource(session, db)
-        pd_src = CassandraSource(session, db)
+        local_src = LocalCassandraSource(session, params.database)
+        pd_src = CassandraSource(session, params.database)
     elif source_name == "mongoDB":
         client = MongoClient()
         db = client['hd']
-        local_src = LocalMongoSource(params.database)
+        local_src = LocalMongoSource(db)
         pd_src = MongoSource(db)
     elif source_name == "sqlServer":
         cnxn = pyodbc.connect(r'Driver={SQL Server};Server=.\SQLEXPRESS;Database=hd;Trusted_Connection=yes;')
