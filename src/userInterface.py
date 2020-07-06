@@ -40,7 +40,7 @@ class InputData:
                                                            "for more information.", choices=self.possible_operations)
 
         self.parser.add_argument('-t', '--table', help="Name of a table or a topic (Kafka) used in the processing."
-                                                       "Join operation requires two tables."
+                                                       "Join operation requires two tables/topics."
                                                        "Insert them with semicolon as a separator, ex: table1;table2")
         self.parser.add_argument('-c', '--column', help="Column to search in or group by a given condition."
                                                         "Join operation requires two columns."
