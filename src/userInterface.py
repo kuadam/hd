@@ -14,8 +14,6 @@ class Params:
         self.column = ""
         self.value = ""
         self.aggregated = ""
-        self.limit = None
-        self.count = None
         self.json_schema = ""
         self.join_version = 0
 
@@ -49,22 +47,16 @@ class InputData:
         self.parser.add_argument('-c', '--column', help="Column to search or group by. "
                                                         "Join operation requires two columns. "
                                                         "Insert them with semicolon as separator, ex: col1;col2")
-        self.parser.add_argument('-v', '--value', help="Value to search by.")
+        self.parser.add_argument('-v', '--value', help="Value to search by."
+                                                       "Insert one value or multiple values separated with comma")
         self.parser.add_argument('-a', '--aggregated', help="Value to aggregate by.")
-        self.parser.add_argument('-j', '--json_schema', help=""
-                                                             "For kafka, join operation requires two topics"
+        self.parser.add_argument('-j', '--json_schema', help="For kafka join operation requires two json schemas. "
                                                              "Insert them with semicolon as separator, ex: schema1;schema2"
                                  )
-        self.parser.add_argument('-l', '--limit', help="Limit table size for filtering operations. "
-                                                       "Value in the range [0:1]. "
-                                                       "If specified, parameter count must be used. "
-                                                       "Number of rows is calculated as follows: "
-                                                       "limited_rows = round(limit * count). "
-                                                       "If not specified, parameter count will be ignored and "
-                                                       "whole table will be filtered.", type=float, default=None)
-        self.parser.add_argument('-cnt', '--count', help="Total number of records. Required when using limited "
-                                                         "filtering.", type=int, default=None)
-        self.parser.add_argument('-jv', '--join_version', help="TODO", type=int, default=0, choices=[0, 1])
+        self.parser.add_argument('-jv', '--join_version', help="For Cassadnra join operation is implemented in two versions."
+                                                                "The default version (0) is for situation where only one (left) table is sorted."
+                                                               " When both tables are sorted, insert 1 to choose the other version.",
+                                                            type=int, default=0, choices=[0, 1])
         self.parser.parse_args(self.args, namespace=self.params)
 
     @staticmethod
