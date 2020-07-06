@@ -117,12 +117,6 @@ class InputData:
                 self.params.column = self.ask_about("column")
             while self.params.value == "":
                 self.params.value = self.ask_about("wanted value")
-            if self.params.limit is not None:
-                while self.params.count in (None, ""):
-                    self.params.count = self.ask_about("count")
-                self.params.count = float(self.params.count)
-            else:
-                self.params.count = None
             return 0
         else:  # join
             if self.params.source=="kafka":
