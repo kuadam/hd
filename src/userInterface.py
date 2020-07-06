@@ -46,10 +46,11 @@ class InputData:
                                                         "Join operation requires two columns."
                                                         "Insert them with semicolon as a separator, ex: col1;col2")
         self.parser.add_argument('-v', '--value', help="Value used as a key in filtering (searched value in find operation)."
-                                                       "Insert one value or multiple values separated with comma.")
+                                                       "Insert one value or multiple values separated with commas.")
         self.parser.add_argument('-a', '--aggregated', help="Column in which values will be aggregated by a given operation.")
-        self.parser.add_argument('-j', '--json_schema', help="Name of a JSON file in res/json_schemas directory containing a sample of messages consumed from specific Kafka topic."
-                                                             "For kafka join operation requires two json schemas."
+        self.parser.add_argument('-j', '--json_schema', help="Name of a JSON file in res/json_schemas directory containing a sample "
+                                                             "of messages consumed from specific Kafka topic chosen by user."
+                                                             "Kafka join operation requires two json schemas."
                                                              "Insert them with semicolon as a separator, ex: schema1;schema2"
                                  )
         self.parser.add_argument('-jv', '--join_version', help="For Cassadnra join operation is implemented in two versions."
