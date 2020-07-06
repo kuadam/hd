@@ -30,32 +30,32 @@ class InputData:
         self.args = args
         self.params = Params()
         self.parser = argparse.ArgumentParser(
-            description="Compare computing time for operation done in ETL and Push-down modes.")
+            description="Compare computing time for operation performed in ETL and PUSH-DOWN modes.")
 
     def parse_arguments(self):
-        self.parser.add_argument('-s', '--source', help="Technology to be used.", choices=self.possible_sources)
-        self.parser.add_argument('-db', '--database', help="Database (mongoDB, SQLServer) or keyspace (Cassandra) to be used."
-                                                           "For kafka, join operation requires two topics"
-                                                           "Insert them with semicolon as separator, ex: topic1;topic2")
-        self.parser.add_argument('-o', '--operation', help="Operation to be compared. "
+        self.parser.add_argument('-s', '--source', help="Name of technology used as a source in the processing.", choices=self.possible_sources)
+        self.parser.add_argument('-db', '--database', help="Name of database (mongoDB, SQLServer) or keyspace (Cassandra) used in the processing."
+        self.parser.add_argument('-o', '--operation', help="Name of an operation to be performed."
                                                            "Please check the documentation "
-                                                           "for more info.", choices=self.possible_operations)
+                                                           "for more information.", choices=self.possible_operations)
 
-        self.parser.add_argument('-t', '--table', help="Table or topic (Kafka) to group by or search by value. "
-                                                       "Join operation requires two tables. "
-                                                       "Insert them with semicolon as separator, ex: table1;table2")
-        self.parser.add_argument('-c', '--column', help="Column to search or group by. "
-                                                        "Join operation requires two columns. "
-                                                        "Insert them with semicolon as separator, ex: col1;col2")
-        self.parser.add_argument('-v', '--value', help="Value to search by."
-                                                       "Insert one value or multiple values separated with comma")
-        self.parser.add_argument('-a', '--aggregated', help="Value to aggregate by.")
-        self.parser.add_argument('-j', '--json_schema', help="For kafka join operation requires two json schemas. "
-                                                             "Insert them with semicolon as separator, ex: schema1;schema2"
+        self.parser.add_argument('-t', '--table', help="Name of a table or a topic (Kafka) used in the processing."
+                                                       "Join operation requires two tables."
+                                                       "Insert them with semicolon as a separator, ex: table1;table2")
+        self.parser.add_argument('-c', '--column', help="Column to search in or group by a given condition."
+                                                        "Join operation requires two columns."
+                                                        "Insert them with semicolon as a separator, ex: col1;col2")
+        self.parser.add_argument('-v', '--value', help="Value used as a key in filtering (searched value in find operation)."
+                                                       "Insert one value or multiple values separated with comma.")
+        self.parser.add_argument('-a', '--aggregated', help="Column in which values will be aggregated by a given operation.")
+        self.parser.add_argument('-j', '--json_schema', help="Name of a JSON file in res/json_schemas directory containing a sample of messages consumed from specific Kafka topic."
+                                                             "For kafka join operation requires two json schemas."
+                                                             "Insert them with semicolon as a separator, ex: schema1;schema2"
                                  )
         self.parser.add_argument('-jv', '--join_version', help="For Cassadnra join operation is implemented in two versions."
-                                                                "The default version (0) is for situation where only one (left) table is sorted."
-                                                               " When both tables are sorted, insert 1 to choose the other version.",
+                                                                "The first (default) version concerns a situation where only the left table is sorted."
+                                                                "The second version is used when both tables are sorted."
+                                                                "Insert 0 to choose the first (default) version or 1 to choose the second version.",
                                                             type=int, default=0, choices=[0, 1])
         self.parser.parse_args(self.args, namespace=self.params)
 
