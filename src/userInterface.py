@@ -34,7 +34,7 @@ class InputData:
 
     def parse_arguments(self):
         self.parser.add_argument('-s', '--source', help="Name of technology used as a source in the processing.", choices=self.possible_sources)
-        self.parser.add_argument('-db', '--database', help="Name of database (mongoDB, SQLServer) or keyspace (Cassandra) used in the processing."
+        self.parser.add_argument('-db', '--database', help="Name of database (mongoDB, SQLServer) or keyspace (Cassandra) used in the processing.")
         self.parser.add_argument('-o', '--operation', help="Name of an operation to be performed."
                                                            "Please check the documentation "
                                                            "for more information.", choices=self.possible_operations)
