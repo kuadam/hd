@@ -42,7 +42,7 @@ class InputData:
         self.parser.add_argument('-t', '--table', help="Name of a table or a topic (Kafka) used in the processing."
                                                        "Join operation requires two tables/topics."
                                                        "Insert them with semicolon as a separator, ex: table1;table2")
-        self.parser.add_argument('-c', '--column', help="Column to search in or group by a given condition."
+        self.parser.add_argument('-c', '--column', help="Column in which values will be searched through or grouped by a given condition"
                                                         "Join operation requires two columns."
                                                         "Insert them with semicolon as a separator, ex: col1;col2")
         self.parser.add_argument('-v', '--value', help="Value used as a key in filtering (searched value in find operation)."
