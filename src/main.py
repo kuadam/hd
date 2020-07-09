@@ -99,18 +99,18 @@ def main():
     # example = "-t record -c energia -o max -v 5005 -db hd_keyspace"
     # example = "-s sqlServer -db hd -t device -o find -c deviceid -v 5005,5004"
     # example = "-s mongoDB -db hd -t record -o find -c deviceid -v 5005 -cnt 61296 -l 0.5"
-    example = "-s cassandra -db hd_keyspace -t device_sorted;record_sorted -o join -c deviceid;deviceid -jv 1"
-    example = '-h'
-    example = example.split()
-    params = show_ui(example)
+    # example = "-s cassandra -db hd_keyspace -t device_sorted;record_sorted -o join -c deviceid;deviceid -jv 1"
+    # example = '-h'
+    # example = example.split()
+    # params = show_ui(example)
 
     # CONNECT
-    local_src, pd_src = get_sources(params)
+    #local_src, pd_src = get_sources(params)
 
     # MEASURE AND COMPARE
-    if local_src is not None and pd_src is not None:
-        measure(params, local_src, pd_src)
-
+    #if local_src is not None and pd_src is not None:
+    #    measure(params, local_src, pd_src)
+    join_cassandra()
 
 if __name__ == "__main__":
     main()
