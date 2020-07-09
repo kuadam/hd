@@ -1,5 +1,6 @@
 import pandas as pd
 import time
+from cassandra.cluster import Cluster
 
 from src.cassandraSource import *
 
@@ -97,6 +98,26 @@ def join_compare(local_source, push_down_source, left_table_name, right_table_na
     join_measure(local_source, left_table_name, right_table_name, left_column, right_column, False)
     print("=================================")
 
+def join_cassandra():
+    cluster = Cluster()
+    session = cluster.connect()
+    session.row_factory = pandas_factory
+    session.default_fetch_size = None
+    local_src = LocalCassandraSource(session, "hd_keyspace")
+    pd_src0 = CassandraSource(session, "hd_keyspace", 0)
+    pd_src1 = CassandraSource(session, "hd_keyspace", 1)
+    print("\n=================================")
+    print("Join cassandra pandas sorted)\n")
+    join_measure(local_src, "record_sorted", "device_sorted", "deviceid", "deviceid", False)
+    print("Join cassandra pandas not sorted)\n")
+    join_measure(local_src, "record_notsorted", "device_notsorted", "deviceid", "deviceid", False)
+    print("Join cassandra push down different size)\n")
+    join_measure(pd_src1, "record_sorted", "device_sorted", "deviceid", "deviceid", True)
+    print("Join cassandra push down similar size)\n")
+    join_measure(pd_src1, "record_sorted150", "device_sorted", "deviceid", "deviceid", True)
+    print("Join cassandra push down bigger sorted)\n")
+    join_measure(pd_src0, "record_sorted", "device_notsorted", "deviceid", "deviceid", True)
+    print("=================================")
 
 '''MAX'''
 
