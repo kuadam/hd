@@ -15,11 +15,11 @@ Implementacja:
 - [X] testy podstawowych zapytań (Cassandra i SQLServer)
 
 Testy i analiza:
-- [ ] MongoDB - optymalizacja zapytań
-- [ ] Cassandra - optymalizacja zapytań
-- [ ] Kafka - optymalizacja zapytań
-- [ ] SQL Server - optymalizacja zapytań
+- [X] MongoDB - optymalizacja zapytań
+- [X] Cassandra - optymalizacja zapytań
+- [X] Kafka - optymalizacja zapytań
+- [X] SQL Server - optymalizacja zapytań
 
 Inne:
-- [ ] Dokumentacja
-- [ ] Prezentacja końcowa
+- [X] Dokumentacja
+- [X] Prezentacja końcowa
