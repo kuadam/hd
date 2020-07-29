@@ -5,10 +5,10 @@ from os import listdir
 from os.path import isfile, join
 
 
-def mongoInsert(PATH_REC, PATH_DEV):
+def mongoInsert(path_rec, path_dev):
     client = MongoClient()
     db = client['hd']
-    insert(PATH_REC, PATH_DEV, db)
+    insert(path_rec, path_dev, db)
 
 
 def insert(destdir, resdir, db):
