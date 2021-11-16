@@ -2,6 +2,8 @@
 
 Projekt zaliczeniowy na laboratoria przedmiotu Hurtownie danych i przetwarzanie analityczne, prowadzone przez profesora Roberta Wrembla na Politechnice Poznańskiej. Projekt powstaje przy współpracy z panem Michałem Bodzionym z firmy IBM.
 
+Dokumentacja techniczna projektu jest dostępna do wglądu [tutaj][1].
+
 
 ## TODO
 Implementacja:
@@ -23,3 +25,5 @@ Testy i analiza:
 Inne:
 - [X] Dokumentacja
 - [X] Prezentacja końcowa
+
+[1]: https://drive.google.com/file/d/1WE1rjQEoXqZJ1nLouVcxIhXzu7XNZwJo/view?usp=sharing
